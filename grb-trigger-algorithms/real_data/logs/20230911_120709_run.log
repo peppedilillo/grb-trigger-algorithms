@@ -1,0 +1,67 @@
+INFO:root:Running on datafile: ./data/observationsdf_016ms_20171002_20171009.zip.
+INFO:root:Trigger algorithm: FOCuSDES.
+INFO:root:Trigger parameters: {'threshold': 5.0, 'alpha': 0.002, 'beta': 0.0, 'm': 250, 't_max': 250, 'sleep': 1062, 'mu_min': 1.1}
+INFO:root:
+--------
+INFO:root:New trigger [key:   0]
+INFO:root:MET: 528653157.494186.
+INFO:root:8.4% done!
+INFO:root:Iteration number: 3624961
+INFO:root:det_name: n2_r1, time-offset:  -3, significance 5.17
+INFO:root:det_name: n6_r1, time-offset:  -3, significance 5.77
+INFO:root:
+--------
+INFO:root:New trigger [key:   1]
+INFO:root:MET: 528678918.038186.
+INFO:root:12.1% done!
+INFO:root:Iteration number: 5234995
+INFO:root:det_name: n3_r1, time-offset: -17, significance 5.50
+INFO:root:det_name: n5_r1, time-offset: -37, significance 5.11
+INFO:root:
+--------
+INFO:root:New trigger [key:   2]
+INFO:root:MET: 528722249.014186.
+INFO:root:18.4% done!
+INFO:root:Iteration number: 7943181
+INFO:root:det_name: n6_r1, time-offset: -207, significance 5.07
+INFO:root:det_name: nb_r1, time-offset: -158, significance 5.36
+INFO:root:
+--------
+INFO:root:New trigger [key:   3]
+INFO:root:MET: 528826041.046186.
+INFO:root:33.4% done!
+INFO:root:Iteration number: 14430183
+INFO:root:det_name: n4_r1, time-offset: -149, significance 5.00
+INFO:root:det_name: n8_r1, time-offset: -88, significance 5.41
+INFO:root:
+--------
+INFO:root:New trigger [key:   4]
+INFO:root:MET: 528842020.102186.
+INFO:root:35.7% done!
+INFO:root:Iteration number: 15428874
+INFO:root:det_name: n8_r1, time-offset: -160, significance 6.05
+INFO:root:det_name: nb_r1, time-offset: -181, significance 5.01
+INFO:root:
+--------
+INFO:root:New trigger [key:   5]
+INFO:root:MET: 529070264.438186.
+INFO:root:68.7% done!
+INFO:root:Iteration number: 29694145
+INFO:root:det_name: n0_r1, time-offset: -134, significance 5.15
+INFO:root:det_name: n1_r1, time-offset: -69, significance 5.14
+INFO:root:
+--------
+INFO:root:New trigger [key:   6]
+INFO:root:MET: 529120484.038186.
+INFO:root:76.0% done!
+INFO:root:Iteration number: 32832870
+INFO:root:det_name: n4_r1, time-offset: -31, significance 7.72
+INFO:root:det_name: n8_r1, time-offset: -35, significance 5.00
+INFO:root:
+--------
+INFO:root:New trigger [key:   7]
+INFO:root:MET: 529211905.638186.
+INFO:root:89.2% done!
+INFO:root:Iteration number: 38546720
+INFO:root:det_name: n8_r1, time-offset: -213, significance 6.81
+INFO:root:det_name: nb_r1, time-offset: -55, significance 5.02

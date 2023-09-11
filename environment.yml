@@ -1,0 +1,12 @@
+name: grb-trigger-algorithms
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy
+  - astropy
+  - joblib
+  - pip
+  - pip:
+      - lmfit
