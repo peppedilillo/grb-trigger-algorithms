@@ -1,4 +1,5 @@
 import pickle
+
 import numpy as np
 import pandas as pd
 from lmfit.models import StepModel
@@ -6,15 +7,15 @@ from lmfit.models import StepModel
 
 def fit_erf(intensities, efficiency):
     x, y = intensities, efficiency
-    mod = StepModel(form='erf')
+    mod = StepModel(form="erf")
     pars = mod.guess(y, x=x)
-    pars['amplitude'].set(value=1, vary=False)
+    pars["amplitude"].set(value=1, vary=False)
     out = mod.fit(y, pars, x=x)
     return out
 
 
 def make_table(results_filepath):
-    results = pickle.load(open(results_filepath, 'rb'))
+    results = pickle.load(open(results_filepath, "rb"))
     fluences = results["fluences"]
     labels = list(results["true"].keys())
 
@@ -23,14 +24,16 @@ def make_table(results_filepath):
     false_det = []
     undetected = []
     fit_50 = []
-    xs = np.arange(fluences[0], fluences[-1], .01)
+    xs = np.arange(fluences[0], fluences[-1], 0.01)
 
     for label in labels:
-        correct_detections = np.where(results["true"][label]["significance"] > 0., 1, 0)
+        correct_detections = np.where(
+            results["true"][label]["significance"] > 0.0, 1, 0
+        )
         correct_detections_num = np.sum(correct_detections)
         tests_num = np.prod(correct_detections.shape)
         correct_fraction = correct_detections_num / tests_num * 100
-        false_detections = np.where(results["false"][label]["significance"] > 0., 1, 0)
+        false_detections = np.where(results["false"][label]["significance"] > 0.0, 1, 0)
         false_detections_num = np.sum(false_detections)
         detection_eff = np.mean(correct_detections, axis=0)
 

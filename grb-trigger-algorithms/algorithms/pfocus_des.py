@@ -1,5 +1,6 @@
 from collections import deque
 from math import sqrt
+
 from algorithms.pfocus import Focus
 
 
@@ -128,6 +129,7 @@ def init(**kwargs):
             significance, offset = focus_des.step(x_t)
             if significance:
                 return significance, t - offset + 1, t
-        return 0., t + 1, t  # no change found by end of signal
+        return 0.0, t + 1, t  # no change found by end of signal
+
     init_parameters = kwargs
     return run

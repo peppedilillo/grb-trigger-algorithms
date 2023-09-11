@@ -3,7 +3,6 @@ from math import sqrt
 
 import numpy as np
 
-
 KDETS = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b")
 KRANGES = ("0", "1", "2")
 
@@ -111,7 +110,9 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0, **trig_par
                 if gm > thresholds[i]:
                     logging.info(
                         "det_name: {}, time-offset: {:3d}, significance {:.2f}".format(
-                            key, -to, gm,
+                            key,
+                            -to,
+                            gm,
                         )
                     )
                     trig_entry.append((key, to, sqrt(2 * gm)))

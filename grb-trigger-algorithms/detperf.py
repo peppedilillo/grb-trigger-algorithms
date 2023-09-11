@@ -1,12 +1,12 @@
 import pickle
-import numpy as np
 from math import ceil
-from joblib import Parallel, delayed
-from astropy.io import fits
 
-from algorithms import pfocus_des, param_sma, exhaustive_true, pfocus_true
-from detection_performances.table import make_table
+import numpy as np
+from algorithms import exhaustive_true, param_sma, pfocus_des, pfocus_true
+from astropy.io import fits
 from detection_performances.plot import make_plot
+from detection_performances.table import make_table
+from joblib import Parallel, delayed
 
 
 def run_triggers(control, test, triglist, labels, fluences, binning):
@@ -27,7 +27,7 @@ def run_triggers(control, test, triglist, labels, fluences, binning):
 
         counts = test[i]
         for label, trigger in list(zip(labels, triglist)):
-            if false_positives[label][i]["significance"] > 0.:
+            if false_positives[label][i]["significance"] > 0.0:
                 continue
             significance, changepoint, triggertime = trigger(counts)
             if significance > 0:
@@ -41,21 +41,21 @@ def run_triggers(control, test, triglist, labels, fluences, binning):
 
 
 def parallelize(
-        controls,
-        tests,
-        triglist,
-        labels,
-        fluences,
-        binning,
-        nthreads,
-        repeats=None,
-        verbose=13,
+    controls,
+    tests,
+    triglist,
+    labels,
+    fluences,
+    binning,
+    nthreads,
+    repeats=None,
+    verbose=13,
 ):
     def step(control, test):
         return run_triggers(control, test, triglist, labels, fluences, binning)
 
-    assert(len(tests) % len(fluences) == 0)
-    assert(len(tests) == len(controls))
+    assert len(tests) % len(fluences) == 0
+    assert len(tests) == len(controls)
     stride = int(len(tests) / len(fluences))
     intensity_steps = len(fluences)
     _repeats = stride if repeats is None else repeats
@@ -76,9 +76,9 @@ def parallelize(
 
 def _test(filepath):
     focus = pfocus_des.init(
-        threshold=5.,
+        threshold=5.0,
         alpha=0.002,
-        beta=0.,
+        beta=0.0,
         m=250,
         t_max=250,
         sleep=1062,
@@ -95,12 +95,12 @@ def _test(filepath):
     controls = hdul[2].data
     tests = hdul[1].data
     run_triggers(
-        controls[:len(fluences), :],
-        tests[:len(fluences), :],
+        controls[: len(fluences), :],
+        tests[: len(fluences), :],
         triglist,
         labels,
         fluences,
-        binning
+        binning,
     )
     print("completed single thread test")
 
@@ -121,7 +121,7 @@ def main():
     from pathlib import Path
 
     nthreads = 20
-    threshold = 5.
+    threshold = 5.0
     filenames = [
         "dataset_grb180703949",
         "dataset_grb120707800",
@@ -154,7 +154,7 @@ def main():
         focus = pfocus_des.init(
             threshold=threshold,
             alpha=0.002,
-            beta=0.,
+            beta=0.0,
             m=250,
             t_max=250,
             sleep=1062,
@@ -169,21 +169,9 @@ def main():
             threshold=threshold,
         )
 
-        triglist = [
-            exh,
-            ftrue,
-            focus,
-            gbm,
-            batse
-        ]
+        triglist = [exh, ftrue, focus, gbm, batse]
 
-        labels = [
-            'Exhaustive',
-            'FOCuS',
-            'FOCuS-AES',
-            'GBM',
-            'BATSE'
-        ]
+        labels = ["Exhaustive", "FOCuS", "FOCuS-AES", "GBM", "BATSE"]
 
         true_detections, false_detections = parallelize(
             controls,
@@ -204,7 +192,7 @@ def main():
 
         Path("detection_performances/outputs/").mkdir(parents=True, exist_ok=True)
         results_filepath = f"detection_performances/outputs/results_{filename}.pkl"
-        with open(results_filepath, 'wb') as to_file:
+        with open(results_filepath, "wb") as to_file:
             pickle.dump(results, to_file)
 
         latex_string = make_table(results_filepath)

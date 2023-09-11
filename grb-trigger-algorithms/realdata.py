@@ -3,7 +3,6 @@ import time
 
 import numpy as np
 import pandas as pd
-
 from algorithms.pfocus_des import FOCuSDES
 from real_data.trigger_multiplexer import trigger_mux
 
@@ -15,7 +14,7 @@ if __name__ == "__main__":
     parameters = {
         "threshold": threshold,
         "alpha": 0.002,
-        "beta": 0.,
+        "beta": 0.0,
         "m": 250,
         "t_max": 250,
         "sleep": 1062,

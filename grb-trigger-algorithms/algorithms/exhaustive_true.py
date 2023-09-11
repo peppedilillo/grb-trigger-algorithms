@@ -1,6 +1,7 @@
-import scipy.special as sps
 from collections import deque
 from math import sqrt
+
+import scipy.special as sps
 
 
 def sign(n, b, threshold):
@@ -15,8 +16,8 @@ def sign(n, b, threshold):
 
 def init(threshold, b, hmax=None, skip=0):
     def run(xs):
-        assert((hmax is None) or isinstance(hmax, int) and hmax > 0)
-        assert(isinstance(skip, int) and skip >= 0)
+        assert (hmax is None) or isinstance(hmax, int) and hmax > 0
+        assert isinstance(skip, int) and skip >= 0
 
         buffer = deque(maxlen=hmax + 1) if hmax else deque()
         buffer.append(0)
@@ -37,4 +38,5 @@ def init(threshold, b, hmax=None, skip=0):
             if global_max > threshold:
                 return global_max, t + time_offset + 1, t
         return 0, t + 1, t
+
     return run

@@ -1,4 +1,4 @@
-from math import log, sqrt, inf
+from math import inf, log, sqrt
 
 
 class Curve:
@@ -86,9 +86,9 @@ class Focus:
 if __name__ == "__main__":
     from math import pi
 
+    import matplotlib.pyplot as plt
     import numpy as np
     import scipy.stats as stats
-    import matplotlib.pyplot as plt
 
     print("generating data")
     samples_per_second = 64

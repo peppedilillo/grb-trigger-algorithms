@@ -1,6 +1,6 @@
 from collections import deque
-from itertools import islice
 from functools import reduce
+from itertools import islice
 from math import log, sqrt
 
 
@@ -34,8 +34,8 @@ def init(threshold, bg_len, fg_len, hs, gs):
                             global_max = S
                             time_offset = -h
 
-                if global_max > threshold ** 2 / 2:
-                    return sqrt(2*global_max), t + time_offset + 1, t
+                if global_max > threshold**2 / 2:
+                    return sqrt(2 * global_max), t + time_offset + 1, t
         return 0, t + 1, t  # no change found by end of signal
 
     assert len(hs) == len(gs)

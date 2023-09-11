@@ -1,4 +1,4 @@
-from math import log, sqrt, inf
+from math import inf, log, sqrt
 
 
 class Curve:
@@ -16,8 +16,8 @@ class Curve:
         )
 
     def ymax(self, acc):
-        a = (acc.a - self.a)
-        b = (acc.b - self.b)
+        a = acc.a - self.a
+        b = acc.b - self.b
         assert a > b > 0
         return a * log(a / b) - (a - b)
 
@@ -25,32 +25,32 @@ class Curve:
         """if dominates q, returns +1"""
         area = (acc.a - self.a) * (acc.b - q.b) - (acc.a - q.a) * (acc.b - self.b)
         if area > 0:
-            return + 1
+            return +1
         return -1
 
 
 class Focus:
-    def __init__(self, threshold, mu_min=1.):
+    def __init__(self, threshold, mu_min=1.0):
         assert mu_min >= 1
         assert threshold > 0
 
         self.ab_crit = 1 if mu_min == 1 else (mu_min - 1) / log(mu_min)
-        self.corrected_threshold = threshold ** 2 / 2
-        self.global_max = 0.
+        self.corrected_threshold = threshold**2 / 2
+        self.global_max = 0.0
         self.time_offset = 0
         self.curve_list = []
-        self.curve_list.append(Curve(inf, 0., 0, 0.))
-        self.curve_list.append(Curve(0, 0., 0, 0.))
+        self.curve_list.append(Curve(inf, 0.0, 0, 0.0))
+        self.curve_list.append(Curve(0, 0.0, 0, 0.0))
 
     def __call__(self, xs, bs):
         assert len(xs) > 1
 
-        self.global_max = 0.
+        self.global_max = 0.0
         self.time_offset = 0
         for t, (x_t, b_t) in enumerate(zip(xs, bs)):
             self.step(x_t, b_t)
             if self.global_max > self.corrected_threshold:
-                return sqrt(2 * self.global_max), - self.time_offset + t + 1, t
+                return sqrt(2 * self.global_max), -self.time_offset + t + 1, t
         return 0.0, len(xs) + 1, len(xs)
 
     def step(self, x, b):
@@ -62,7 +62,7 @@ class Focus:
 
         if (acc.a - p.a) <= self.ab_crit * (acc.b - p.b):
             self.curve_list = self.curve_list[:1]
-            self.curve_list.append(Curve(0, 0., 0, 0.))
+            self.curve_list.append(Curve(0, 0.0, 0, 0.0))
         else:
             acc.m = p.m + p.ymax(acc)
             checked_maxima = self.maximize(p, acc)
@@ -92,7 +92,7 @@ class Focus:
 
 
 def focus(X, lambda_1, threshold, mu_min=None):
-    assert (mu_min >= 1)
+    assert mu_min >= 1
     _focus = Focus(threshold, mu_min)
     output_curves = []
     output_maxima = []
@@ -103,4 +103,10 @@ def focus(X, lambda_1, threshold, mu_min=None):
         maxima_info = [(acc.t - c.t - 1, T) for c in checked_maxima]
         output_curves.append(curves_info)
         output_maxima.append(maxima_info)
-    return 0, len(X) + 1, len(X), output_curves, output_maxima  # no change found by end of signal
+    return (
+        0,
+        len(X) + 1,
+        len(X),
+        output_curves,
+        output_maxima,
+    )  # no change found by end of signal
