@@ -1,4 +1,4 @@
-# Gamma-Ray detection using Poisson-FOCuS and other trigger algorithms
+# Gamma-ray burst detection using Poisson-FOCuS and other trigger algorithms
 
 ..
 
