@@ -8,7 +8,7 @@ echo "deleted old outputs file."
 
 outfile_gbm="results_gbm.txt";
 outfile_focus="results_focus.txt";
-printf "\nNew test: anomalies\n"
+printf "\nNew test: computational performances\n"
 echo "----Running algorithms----"
 for filename in "$inputs"/*.txt; do
   echo "running gbm on $filename"
