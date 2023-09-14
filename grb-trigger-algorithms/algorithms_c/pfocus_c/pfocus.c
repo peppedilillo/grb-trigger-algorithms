@@ -48,14 +48,14 @@ void stack_reset(Stack *s) {
 }
 
 double curve_max(Curve *c, Curve *acc) {
-    int a = (acc->a - c->a);
+    int x = (acc->x - c->x);
     double b = (acc->b - c->b);
-    assert(a > b);
-    return a * log(a / b) - (a - b);
+    assert(x > b);
+    return x * log(x / b) - (x - b);
 }
 
 int curve_dominate(Curve *p, Curve *q, Curve *acc) {
-    if ((acc->a - p->a) * (acc->b - q->b) - (acc->a - q->a) * (acc->b - p->b) > 0)
+    if ((acc->x - p->x) * (acc->b - q->b) - (acc->x - q->x) * (acc->b - p->b) > 0)
         return +1;
     return -1;
 }
@@ -91,11 +91,11 @@ void focus_maximize(Focus *f, Curve *p, Curve *acc) {
 void focus_step(Focus *f, int x_t, double b_t) {
     Stack *curves = f->curves;
     Curve *p = stack_pop(curves);
-    Curve acc = {p->a + x_t, p->b + b_t, p->t + 1, p->m};
+    Curve acc = {p->x + x_t, p->b + b_t, p->t + 1, p->m};
     while (curve_dominate(p, stack_peek(curves), &acc) < 0)
         p = stack_pop(curves);
 
-    if ((acc.a - p->a) > f->ab_critical * (acc.b - p->b)) {
+    if ((acc.x - p->x) > f->ab_critical * (acc.b - p->b)) {
         double m = curve_max(p, &acc);
         acc.m = p->m + m;
         focus_maximize(f, p, &acc);
@@ -116,7 +116,7 @@ void focus_print(size_t t, int x_t, double b_t, Focus *f) {
     while (i != f->curves->head) {
         q = (f->curves->arr + i);
         printf("(%d, %.2f, %d, %.2f) ",
-               +(acc->a - q->a),
+               +(acc->x - q->x),
                -(acc->b - q->b),
                -(acc->t - q->t),
                q->m);
@@ -136,7 +136,7 @@ Changepoint focus_interface(double threshold, double mu_min, int *xs, double *bs
     size_t t;
     for (t = 0; t < len; t++) {
         focus_step(&focus, xs[t], bs[t]);
-#ifdef DEBUG
+#ifndef NDEBUG
         focus_print(t, xs[t], bs[t], &focus);
 #endif
         if (focus.maximum)

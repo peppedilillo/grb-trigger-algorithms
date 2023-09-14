@@ -12,7 +12,7 @@ typedef struct {
 } Changepoint;
 
 typedef struct {
-    int a;
+    int x;
     double b;
     int t;
     double m;

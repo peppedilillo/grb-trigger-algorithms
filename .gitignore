@@ -8,6 +8,7 @@ grb-trigger-algorithms/algorithms/pfocus_minimal_test.py
 grb-trigger-algorithms/algorithms_c/pfocus_c/elements/
 grb-trigger-algorithms/algorithms_c/pfocus_c/tests/
 grb-trigger-algorithms/computational_efficiency/inputs/*
+grb-trigger-algorithms/computational_efficiency/outputs/*
 grb-trigger-algorithms/data/*.zip
 grb-trigger-algorithms/data/*.fits
 grb-trigger-algorithms/detection_performances/outputs/*
