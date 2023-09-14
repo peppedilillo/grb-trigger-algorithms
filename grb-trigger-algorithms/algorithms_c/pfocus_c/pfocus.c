@@ -66,7 +66,7 @@ void focus_init(Focus *f, Stack *s, double threshold, double mu_min) {
     f->time_offset = 0;
     f->curves = s;
     f->threshold = threshold * threshold / 2;
-    f->ab_critical = (mu_min == 1. ? 1.0 : (mu_min - 1) / log(mu_min));
+    f->mu_crit = (mu_min == 1. ? 1.0 : (mu_min - 1) / log(mu_min));
 
     stack_push(s, &TAIL_CURVE);
     stack_push(s, &NULL_CURVE);
@@ -95,7 +95,7 @@ void focus_step(Focus *f, int x_t, double b_t) {
     while (curve_dominate(p, stack_peek(curves), &acc) < 0)
         p = stack_pop(curves);
 
-    if ((acc.x - p->x) > f->ab_critical * (acc.b - p->b)) {
+    if ((acc.x - p->x) > f->mu_crit * (acc.b - p->b)) {
         double m = curve_max(p, &acc);
         acc.m = p->m + m;
         focus_maximize(f, p, &acc);

@@ -1,5 +1,6 @@
 #ifndef HERMES_FOCUS_FOCUS_H
 #define HERMES_FOCUS_FOCUS_H
+
 #include <stddef.h>
 
 #define FOCUS_MAXCURVES 64
@@ -29,7 +30,7 @@ typedef struct {
     Stack *curves;
     double maximum;
     int time_offset;
-    double ab_critical;
+    double mu_crit;
     double threshold;
 } Focus;
 
@@ -42,4 +43,5 @@ void focus_step(Focus *f, int x_t, double b_t);
 Changepoint focus_interface(double threshold, double mu_min, int *xs, double *bs, size_t len);
 
 void focus_print(size_t t, int x_t, double b_t, Focus *f);
+
 #endif //HERMES_FOCUS_FOCUS_H
