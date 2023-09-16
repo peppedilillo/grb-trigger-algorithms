@@ -265,18 +265,6 @@ def plot(
         alpha=0.4,
         color="red",
     )
-    # ax1.hlines(
-    #     y=ids,
-    #     xmin=0,
-    #     xmax=ids.max() + 1.0,
-    #     color="black", linewidth=.5,
-    # )
-    # ax1.vlines(
-    #     x=ids,
-    #     ymin=0 - 0.5,
-    #     ymax=ids.max() + 0.5,
-    #     color="black", linewidth=.5,
-    # )
     ax1.set_ylabel("Counts")
     ax1.set_ylim(0, 20)
     ax1.set_xlim(ids[0], ids[-1] + 1)
