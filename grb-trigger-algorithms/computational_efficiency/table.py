@@ -1,3 +1,8 @@
+"""
+This script will generate a latex table string starting from your results of
+the computational efficiency tests.
+"""
+
 import pandas as pd
 
 if __name__ == "__main__":

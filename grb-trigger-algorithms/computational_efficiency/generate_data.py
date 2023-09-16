@@ -1,3 +1,8 @@
+"""
+This is a simple script to create the test dataset used for computational
+efficiency tests.
+"""
+
 from pathlib import Path
 
 import numpy as np

@@ -13,11 +13,8 @@ Yuri Evangelista,
 Andrea Vacchi,
 Fabrizio Fiore_
 
-The paper deals with the problem of detecting GRBs. In particular we use 
-Poisson-FOCuS, a novel anomaly and changepoint detection technique for 
-Poisson-distributed count time series. 
-Make sure also to give the look at the papers where 
-FOCuS and FOCuS-Poisson were first introduced [1][2]!
+The paper deals with algorithms for detecting gamma-ray bursts. 
+
 
 ## Data
 
@@ -58,7 +55,7 @@ the packages needed to run the python code of this repo.
 
 Now we do put the data in their default location.
 This will make it easier to run the scripts.
-Move the datasets you downloaded from Zenodo in the `grb-trigger-algorithm\data\`
+Move all the datasets you downloaded from Zenodo in the `grb-trigger-algorithm\data\`
 data folder, then unzip the file `simulated_dataset_compeff.zip`.
 The folder structure should look something like this:
 
@@ -93,15 +90,15 @@ For compiling the C implementation of Poisson-FOCuS:
 4. Now run `cmake --build . --config Release`.
 
 This will create executables in you debug and release folders called `pfocus` and `pfocus_compeff`.
-The difference between the debug and release versions is that the debug one will print a control string
-at each algorithm iteration.
-
+The debug versions will print a status string at each iteration.
 Repeat the same for the benchmark, which is located in the folder `grb-trigger-algorithm/grb-trigger-algorithm/algorithms_c/benchmark/`.
 
------
 
-And.. You are set! Make sure to give a look at what's inside `grb-trigger-algorithm`,
-you will find more instructions in there.
+You are set! 
+
+## Runinng the experiments
+
+### 1. Computational efficiency
 
 ## Uninstalling
 
@@ -109,9 +106,12 @@ To uninstall delete the repository local folder.
 If you installed our conda environment you can uninstall it with:
 
 `conda remove -n mescal --all`
+
 ## Bibliography
 
-[1]: Ward, Kes, et al. "Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection." Journal of the American Statistical Association (2023): 1-13.
+The paper this repo buils on has yet to be published. 
+I will update with a link as soon as we have it or a preprint out.
 
-[2]: Romano, Gaetano, et al. "Fast online changepoint detection via functional pruning CUSUM statistics." Journal of Machine Learning Research 24 (2023): 1-36.
+* Dilillo, G., et al. "Gamma-ray burst detection using Poisson-FOCuS and other trigger algorithms." _manuscript submitted for publication_ (2023).
 
+* Ward, Kes, et al. "Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection." _Journal of the American Statistical Association_ (2023): 1-13.

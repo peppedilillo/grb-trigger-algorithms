@@ -11,6 +11,7 @@ grb-trigger-algorithms/computational_efficiency/inputs/*
 grb-trigger-algorithms/computational_efficiency/outputs/*
 grb-trigger-algorithms/data/*.zip
 grb-trigger-algorithms/data/*.fits
+grb-trigger-algorithms/data/simulated_dataset_compeff/*.txt
 grb-trigger-algorithms/detection_performances/outputs/*
 grb-trigger-algorithms/detection_performances/plots/*
 grb-trigger-algorithms/visualization/outputs/*

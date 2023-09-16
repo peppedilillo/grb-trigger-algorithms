@@ -1,4 +1,4 @@
-inputs=computational_efficiency/inputs
+inputs=data/simulated_dataset_compeff
 outputs=computational_efficiency/outputs
 
 mkdir -p $outputs > /dev/null 2>&1
