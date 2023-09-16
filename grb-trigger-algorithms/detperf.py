@@ -133,7 +133,7 @@ def main(nthreads=8):
         "dataset_grb120707800",
     ]
     for filename in filenames:
-        hdul = fits.open(f"data/{filename}.fits")
+        hdul = fits.open(f"data/simulated_{filename}.fits")
         fsteps = hdul[0].header["FSTEPS"]
         nmin, nmax = hdul[0].header["NMIN"], hdul[0].header["NMAX"]
         binning = hdul[0].header["BINNING"]
