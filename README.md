@@ -97,7 +97,7 @@ Repeat the same for the benchmark, which is located in the folder `grb-trigger-a
 
 You are set! 
 
-## Runinng the experiments
+## Running the experiments
 
 ### 1. Computational efficiency
 
