@@ -25,6 +25,7 @@ You can download the data used in this research from [Zenodo](https://doi.org/10
 ### Requirements
 1. Python and few external packages, see section section "Environment creation".
 2. To run the C code of this repository you will need cmake and a compiler (such as GCC).
+3. A UNIX-like system or the patience to rewrite a few shell scripts. 
 
 ### 1. Download
 First you must download the data and the present repository.
@@ -99,6 +100,21 @@ You are set!
 ## Runinng the experiments
 
 ### 1. Computational efficiency
+
+We provide a shells script `compeff.sh` to automatically run the computational efficiency tests.
+To run this script on mac move to the `grb-trigger-algorithms/grb-trigger-algorithms` folder and run:
+
+`zsh compeff.sh`
+
+This requires you to have set up the data (see section 1. and 3. of "Setup") and
+compiled the C implementations of Poisson-FOCuS and the GBM-like benchmark.
+The results of these tests are stored in the folder `grb-trigger-algorithms/computational_efficiency/outputs`.
+In the folder `grb-trigger-algorithms/computational_efficiency` you will also
+find a script `table.py` to parse these results into a latex table.
+
+### 2. Real data tests
+
+
 
 ## Uninstalling
 

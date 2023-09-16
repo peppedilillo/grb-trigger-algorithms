@@ -11,7 +11,7 @@ class FOCuSDES:
         alpha: float,
         beta: float,
         m: int,
-        t_max: int | None = None,
+        t_max: int = None,
         mu_min: float = 1.0,
         sleep: int = None,
         s_0: float = None,
