@@ -116,15 +116,22 @@ find a script `table.py` to parse these results into a latex table.
 
 This will run Poisson-FOCuS with exponential smoothing background assessment onto 
 one week of data from Fermi-GBM. The test analyzes data from all Fermi-GBM
-detectors, binned at 16 ms using a python implementation of Poisson-FOCuS.
+detectors, binned at 16 ms using a python implementation of Poisson-FOCuS,
+ see `grb-trigger-algorithms/algorithms/pfocus_des.py`.
 It will take some time.
-To run the test move to `grb-trigger-algorithms/grb-trigger-algorithms` with 
+To run the test move to `grb-trigger-algorithms` with 
 your terminal and run `python realdata.py`.
 The results from the experiment are saved in `grb-trigger-algorithms/real_data/logs`.
 
 ### 3. Detection performances
 
-
+This experiment tests the computational performances of different python algorithms
+(see `grb-trigger-algorithms/algorithms`).
+To run the test move to the `grb-trigger-algorithms` folder with 
+your terminal and run `python realdata.py`.
+Results will be stored in `grb-trigger-algorithms/detection_performances/outputs`.
+We also provide scripts to plot and table the results, see `plot.py` and `table.py` in
+`grb-trigger-algorithms/detection_performances/`.
 
 ## Uninstalling
 
