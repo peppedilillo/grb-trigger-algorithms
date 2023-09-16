@@ -1,3 +1,8 @@
+"""
+A script to execute Poisson-FOCuS with exponential smoothing background estimate
+over data one week of data from Fermi-GBM.
+"""
+
 import logging
 import time
 

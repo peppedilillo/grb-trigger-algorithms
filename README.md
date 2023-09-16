@@ -112,7 +112,17 @@ The results of these tests are stored in the folder `grb-trigger-algorithms/comp
 In the folder `grb-trigger-algorithms/computational_efficiency` you will also
 find a script `table.py` to parse these results into a latex table.
 
-### 2. Real data tests
+### 2. Tests on real data
+
+This will run Poisson-FOCuS with exponential smoothing background assessment onto 
+one week of data from Fermi-GBM. The test analyzes data from all Fermi-GBM
+detectors, binned at 16 ms using a python implementation of Poisson-FOCuS.
+It will take some time.
+To run the test move to `grb-trigger-algorithms/grb-trigger-algorithms` with 
+your terminal and run `python realdata.py`.
+The results from the experiment are saved in `grb-trigger-algorithms/real_data/logs`.
+
+### 3. Detection performances
 
 
 

@@ -1,3 +1,10 @@
+"""
+This scipts runs the computational efficiency tests.
+The use of the exhaustive search algorithm is disabled by default.
+You can enable it uncommenting line 179.
+The script is parallelized with joblib. By default it uses 4 threads.
+"""
+
 import pickle
 from math import ceil
 
@@ -117,10 +124,9 @@ def _test(filepath):
     print("completed parallel test")
 
 
-def main():
+def main(nthreads=8):
     from pathlib import Path
 
-    nthreads = 20
     threshold = 5.0
     filenames = [
         "dataset_grb180703949",
@@ -169,9 +175,15 @@ def main():
             threshold=threshold,
         )
 
-        triglist = [exh, ftrue, focus, gbm, batse]
-
-        labels = ["Exhaustive", "FOCuS", "FOCuS-AES", "GBM", "BATSE"]
+        trig_dict = {
+            # "Exhaustive": exh,
+            "FOCuS": ftrue,
+            "FOCuS-AES": focus,
+            "GBM": gbm,
+            "BATSE": batse,
+        }
+        triglist = list(trig_dict.values())
+        labels = list(trig_dict.keys())
 
         true_detections, false_detections = parallelize(
             controls,
@@ -209,4 +221,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(nthreads=4)
