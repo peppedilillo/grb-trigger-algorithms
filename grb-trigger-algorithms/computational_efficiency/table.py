@@ -49,5 +49,3 @@ if __name__ == "__main__":
     latex_string = merged_df.style.format(precision=2).to_latex(hrules=True)
     print("concatenated: ")
     print(latex_string)
-    with open("./outputs/table.tex", "w") as text_file:
-        text_file.write(latex_string)

@@ -3,8 +3,8 @@ outputs=computational_efficiency/outputs
 
 mkdir -p $outputs > /dev/null 2>&1
 echo "created output folder"
+echo "deleting old outputs file."
 rm $outputs/*.txt
-echo "deleted old outputs file."
 
 outfile_gbm="results_gbm.txt";
 outfile_focus="results_focus.txt";
@@ -19,4 +19,15 @@ for filename in "$inputs"/*.txt; do
   ./algorithms_c/pfocus_c/cmake-build-release/pfocus_compeff "$filename" >> "$outputs"/"$outfile_focus";
 done
 
-printf "\nDone.\n"
+cd computational_efficiency || exit
+tables="tables";
+outfile_table="table.txt";
+mkdir -p $tables > /dev/null 2>&1
+echo "created table folder"
+echo "deleting old tables."
+rm "$tables"/"$outfile_table"
+
+python table.py > "$tables"/"$outfile_table";
+cd ..
+
+echo "Done."
