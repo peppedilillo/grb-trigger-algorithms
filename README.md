@@ -106,32 +106,29 @@ To run this script on mac move to the `grb-trigger-algorithms/grb-trigger-algori
 
 `zsh compeff.sh`
 
-This requires you to have set up the data (see section 1. and 3. of "Setup") and
-compiled the C implementations of Poisson-FOCuS and the GBM-like benchmark.
+This requires you to have set up the data (see section 1. and 3. of "Setup") and compiled the C implementations of Poisson-FOCuS and the GBM-like benchmark.
 The results of these tests are stored in the folder `grb-trigger-algorithms/computational_efficiency/outputs`.
-In the folder `grb-trigger-algorithms/computational_efficiency` you will also
-find a script `table.py` to parse these results into a latex table.
+In the folder `grb-trigger-algorithms/computational_efficiency` you will also find a script `table.py` to parse these results into a latex table.
 
 ### 2. Tests on real data
 
-This will run Poisson-FOCuS with exponential smoothing background assessment onto 
-one week of data from Fermi-GBM. The test analyzes data from all Fermi-GBM
-detectors, binned at 16 ms using a python implementation of Poisson-FOCuS,
- see `grb-trigger-algorithms/algorithms/pfocus_des.py`.
-It will take some time.
-To run the test move to `grb-trigger-algorithms` with 
-your terminal and run `python realdata.py`.
+This will run Poisson-FOCuS with exponential smoothing background assessment on one week of data from Fermi-GBM. The test analyzes data from all Fermi-GBM detectors, binned at 16 ms using a python implementation of Poisson-FOCuS, see `grb-trigger-algorithms/algorithms/pfocus_des.py`.
+It will take some time. 
+To run the test move to `grb-trigger-algorithms` with your terminal and run:
+
+`python realdata.py`
+
 The results from the experiment are saved in `grb-trigger-algorithms/real_data/logs`.
 
 ### 3. Detection performances
 
-This experiment tests the computational performances of different python algorithms
-(see `grb-trigger-algorithms/algorithms`).
-To run the test move to the `grb-trigger-algorithms` folder with 
-your terminal and run `python realdata.py`.
+This experiment tests the computational performances of different python algorithms (see `grb-trigger-algorithms/algorithms`). 
+To run the test move to the `grb-trigger-algorithms` folder with your terminal and run:
+
+`python detperf.py`.
+
 Results will be stored in `grb-trigger-algorithms/detection_performances/outputs`.
-We also provide scripts to plot and table the results, see `plot.py` and `table.py` in
-`grb-trigger-algorithms/detection_performances/`.
+We also provide scripts to plot and table the results, see `plot.py` and `table.py` in `grb-trigger-algorithms/detection_performances/`.
 
 ## Uninstalling
 
