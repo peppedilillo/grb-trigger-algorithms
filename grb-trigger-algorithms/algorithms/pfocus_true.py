@@ -25,10 +25,8 @@ def init(b: float, threshold: float, mu_min: float = 1, skip: int = 0):
             xs: a list of count data
 
         Returns:
-            A 3-tuple. If trigger condition is met the output consists of a
-            significance value (std. devs), the changepoint, and
-            the stopping iteration (trigger time). Else returns a triplet with
-            first element equal 0.
+            A 3-tuple: significance value (std. devs), changepoint,  and
+            stopping iteration (trigger time).
         """
         focus = Focus(threshold, mu_min=mu_min)
         t = None

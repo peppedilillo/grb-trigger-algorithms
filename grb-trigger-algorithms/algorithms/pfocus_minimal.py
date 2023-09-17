@@ -31,13 +31,14 @@ def focus(xs: list[int], bs: list[float], threshold: float):
     """
     This is the simplest implementation of Poisson-FOCuS.
     Note that it does not convert loglikelihood ratio significance to std. devs.
-    This implies that if you want to run at 5 sigma threshold you should call
-    with threshold 12.5 and should expect triggers with significance > 12.5.
+    Implies that if you want to run at 5 [sigma] threshold you should call with
+    threshold 12.5 [llr] and expect trigger significance > 12.5 [llr].
+     S_llr = S_sigma ** 2 / 2, due Wilk's Theorem.
 
     Args:
         xs: a list of count data
         bs: a list of background values
-        threshold: as a loglikelihood ratio, not std. devs.
+        threshold: in loglikelihood ratio units (not std. devs.)
 
     Returns:
         A 3-tuple: significance value (loglikelihood ratio), changepoint,  and
