@@ -12,13 +12,6 @@ class Curve:
         self.t = t
         self.m = m
 
-    def __repr__(self):
-        return "({}, {:.2f}, {})".format(
-            self.x,
-            self.b,
-            self.t,
-        )
-
 
 def ymax(curve, acc):
     x = acc.x - curve.x
@@ -55,7 +48,7 @@ class Focus:
             raise ValueError("threshold must be greater than 0.")
 
         self.ab_crit = 1 if mu_min == 1 else (mu_min - 1) / log(mu_min)
-        self.threshold_llr = threshold_std**2 / 2  # loglikelihood-ratio threshold
+        self.threshold_llr = threshold_std**2 / 2
         self.global_max = None
         self.time_offset = None
         self.curve_list = []
@@ -124,7 +117,7 @@ if __name__ == "__main__":
     print("generating data")
     samples_per_second = 64
     num_samples = 90 * 60 * samples_per_second
-    ts = np.linspace(0, 1, num_samples + 1)[:-1] * 90 * 60  # seconds
+    ts = np.linspace(0, 1, num_samples + 1)[:-1] * 90 * 60
     true_background = 4 + 2 * np.sin(
         2 * pi * np.linspace(0, 1, num_samples) + 2 * pi * stats.uniform().rvs()
     )

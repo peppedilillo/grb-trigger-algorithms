@@ -61,8 +61,8 @@ def init(
             if t >= bg_len:
                 bkg_rate = sumdq(observations_buffer, bg_len, bg_len) / bg_len
                 #  TODO: improve the next line
-                #  it is not optimal honestly but it's ok presently since
-                #  i'm not much concerned with the speed of this implementation
+                #  it is not optimal but it's ok here since
+                #  i'm not much concerned with the speed of this implementation.
                 #  if you are looking for an efficient implementation, check
                 #  algorithms_c/benchmark/
                 scheduled_tests = [(h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1]
@@ -77,7 +77,7 @@ def init(
 
                 if global_max > threshold**2 / 2:
                     return sqrt(2 * global_max), t + time_offset + 1, t
-        return 0, t + 1, t  # no change found by end of signal
+        return 0, t + 1, t
 
     if len(hs) != len(gs):
         raise ValueError("hs and gs must have same length")
