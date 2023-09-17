@@ -38,5 +38,8 @@ def init(b: float, threshold: float, mu_min: float = 1, skip: int = 0):
                 return sqrt(2 * focus.global_max), t - focus.time_offset + 1, t
         return 0, t + 1, t
 
-    assert mu_min >= 1.0
+    if mu_min < 1:
+        raise ValueError("mumin must be greater or equal 1.0")
+    if threshold <= 0:
+        raise ValueError("threshold must be greater than 0.")
     return run
