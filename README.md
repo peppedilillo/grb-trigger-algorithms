@@ -138,7 +138,7 @@ We also provide scripts to plot and table the results, see `plot.py` and `table.
 To uninstall delete the repository local folder.
 If you installed our conda environment you can uninstall it with:
 
-`conda remove -n mescal --all`
+`conda remove -n grb-trigger-algorithms --all`
 
 ## Bibliography
 
