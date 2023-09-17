@@ -1,3 +1,7 @@
+"""
+Conventional algorithms with simple moving average background estimate.
+"""
+
 from collections import deque
 from functools import reduce
 from itertools import islice
@@ -10,42 +14,84 @@ def sign(n, b):
     return 0.0
 
 
-# no slice for deques. equivalent to sum(d[n - h:n]])
-sumdq = lambda d, n, h: sum(islice(d, n - h, n))
+def sumdq(d, n, h):
+    """
+    no slice for deques. equivalent to sum(d[n - h:n]])
+    """
+    return sum(islice(d, n - h, n))
 
-# a min function which support None as infinity
-nmin = lambda a, b: min(map((lambda x: float("inf") if x is None else x), (a, b)))
 
+def init(
+    threshold: float,
+    bg_len: int,
+    fg_len: int,
+    hs: list[int],
+    gs: list[int],
+):
+    """
+    A conventional algorithm computing background via simple moving average.
 
-def init(threshold, bg_len, fg_len, hs, gs):
-    def run(X):
-        obsbuf = deque(maxlen=buflen)  # observation buffer
+    Args:
+        threshold: a threshold value in units of standard deviations.
+        bg_len: number of past data used for background computation.
+        fg_len: number of recent data. these are not used for background estimate.
+        hs: interval lengths to check. must have same length than gs.
+        gs: interval offsets to check. must have same length than hs.
+            all values in gs must be smaller than respective values in hs.
+
+    Returns:
+        a trigger function. you run this on your data.
+    """
+    def run(xs: list[int]):
+        """
+        Args:
+            xs: a list of count data
+
+        Returns:
+            A 3-tuple: significance value (std. devs), trigger interval's length,
+            and stopping iteration (trigger time).
+        """
+        observations_buffer = deque(maxlen=buflen)
         global_max = 0
         time_offset = 0
 
-        for t, x_t in enumerate(X):
-            obsbuf.append(x_t)
+        for t, x_t in enumerate(xs):
+            observations_buffer.append(x_t)
             if t >= bg_len:
-                bkg_rate = sumdq(obsbuf, bg_len, bg_len) / bg_len
-                for h, g in [(h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1]:
+                bkg_rate = sumdq(observations_buffer, bg_len, bg_len) / bg_len
+                scheduled_tests = [(h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1]
+                for h, g in scheduled_tests:
                     if (t + 1) % h == g:
-                        S = sign(sumdq(obsbuf, min(buflen, t + 1), h), bkg_rate * h)
-                        if S > global_max:
-                            global_max = S
+                        x = sumdq(observations_buffer, min(buflen, t + 1), h)
+                        b = bkg_rate * h
+                        significance = sign(x, b)
+                        if significance > global_max:
+                            global_max = significance
                             time_offset = -h
 
                 if global_max > threshold**2 / 2:
                     return sqrt(2 * global_max), t + time_offset + 1, t
         return 0, t + 1, t  # no change found by end of signal
 
-    assert len(hs) == len(gs)
+    if len(hs) != len(gs):
+        raise ValueError("hs and gs must have same length")
     # check all gs are smaller than respective hs
-    assert reduce((lambda x, y: x * y), [g < h for (h, g) in zip(hs, gs)])
+    if not reduce((lambda x, y: x * y), [g < h for (h, g) in zip(hs, gs)]):
+        raise ValueError("offsets must be smaller then respective timescales")
     buflen = fg_len + bg_len
     return run
 
 
-def init_gbm(threshold):
+def init_gbm(threshold: float):
+    """
+    Initializes a conventional algorithms with GBM-like parameters.
+
+    Args:
+        threshold: a threshold value in units of standard deviations.
+
+    Returns:
+        a trigger function.
+    """
     f = init(
         threshold,
         bg_len=1062,
@@ -56,7 +102,16 @@ def init_gbm(threshold):
     return f
 
 
-def init_batse(threshold):
+def init_batse(threshold: float):
+    """
+    Initializes a conventional algorithms with BATSE-like parameters.
+
+    Args:
+        threshold: a threshold value in units of standard deviations.
+
+    Returns:
+        a trigger function.
+    """
     f = init(
         threshold,
         bg_len=1062,

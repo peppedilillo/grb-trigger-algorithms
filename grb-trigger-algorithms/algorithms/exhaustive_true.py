@@ -1,3 +1,7 @@
+"""
+An exhaustive search algorithm.
+"""
+
 from collections import deque
 from math import sqrt
 
@@ -6,19 +10,43 @@ import scipy.special as sps
 
 def sign(n, b, threshold):
     if n > b + threshold * sqrt(b):
-        # poisson partition function
+        # compute poisson partition function
         pvalue = sps.pdtrc(n, b)
-        # sqrt(2) * erfinv(1 - 2 * pvalue)
+        # converts to standard deviations
         stdevs = -sps.ndtri(pvalue)
         return stdevs
     return 0.0
 
 
-def init(threshold, b, hmax=None, skip=0):
-    def run(xs):
-        assert (hmax is None) or isinstance(hmax, int) and hmax > 0
-        assert isinstance(skip, int) and skip >= 0
+def init(
+    threshold: float,
+    b: float,
+    hmax: int | None = None,
+    skip: int = 0,
+):
+    """
+    An exhaustive search algorithm. This is for testing purpose only: the
+    algorithm is not feasibile in real scendario due to complexity N^2.
+    Assumes background to be constant.
 
+    Args:
+        threshold: a threshold value in units of standard deviations.
+        b: the background rate.
+        hmax: maximum interval length tested. must be greater than 0.
+        skip: number of initial iterations to skip. must be greater or equal 0.
+
+    Returns:
+        a trigger function. you run this on your data.
+    """
+    def run(xs: list[int]):
+        """
+        Args:
+            xs: a list of count data
+
+        Returns:
+            A 3-tuple: significance value (std. devs), trigger interval's length,
+            and stopping iteration (trigger time).
+        """
         buffer = deque(maxlen=hmax + 1) if hmax else deque()
         buffer.append(0)
         global_max = 0
@@ -37,6 +65,10 @@ def init(threshold, b, hmax=None, skip=0):
                     time_offset = -h
             if global_max > threshold:
                 return global_max, t + time_offset + 1, t
-        return 0, t + 1, t
+        return 0., t + 1, t
 
+    if (hmax is not None) and hmax <= 0:
+        raise ValueError("hmax must be either None or a positive integer.")
+    if skip < 0:
+        raise ValueError("skip must be a non negative integer.")
     return run

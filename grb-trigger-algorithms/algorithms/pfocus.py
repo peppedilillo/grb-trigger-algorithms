@@ -1,38 +1,58 @@
+"""
+An implementation of Poisson-FOCuS.
+"""
+
 from math import inf, log, sqrt
 
 
 class Curve:
-    def __init__(self, a: float, b: int, t: int, m: float):
-        self.a = a  # counts
-        self.b = b  # background
-        self.t = t  # age
+    def __init__(self, x: float, b: float, t: int, m: float):
+        self.x = x
+        self.b = b
+        self.t = t
         self.m = m
 
     def __repr__(self):
         return "({}, {:.2f}, {})".format(
-            self.a,
+            self.x,
             self.b,
             self.t,
         )
 
-    def ymax(self, acc):
-        a = acc.a - self.a
-        b = acc.b - self.b
-        assert a > b > 0
-        return a * log(a / b) - (a - b)
 
-    def dominate(self, q, acc):
-        """if dominates q, returns +1"""
-        area = (acc.a - self.a) * (acc.b - q.b) - (acc.a - q.a) * (acc.b - self.b)
-        if area > 0:
-            return +1
-        return -1
+def ymax(curve, acc):
+    x = acc.x - curve.x
+    b = acc.b - curve.b
+    assert x > b
+    return x * log(x / b) - (x - b)
+
+
+def dominate(p, q, acc):
+    """
+    returns if p dominates q
+    """
+    area = (acc.x - p.x) * (acc.b - q.b) - (acc.x - q.x) * (acc.b - p.b)
+    if area > 0:
+        return +1
+    return -1
 
 
 class Focus:
-    def __init__(self, threshold_std, mu_min=1.0):
-        assert mu_min >= 1
-        assert threshold_std > 0
+    def __init__(
+        self,
+        threshold_std: float,
+        mu_min: float = 1.0,
+    ):
+        """
+
+        Args:
+            threshold_std: threshold value in standard deviations.
+            mu_min: mumin value.
+        """
+        if mu_min < 1:
+            raise ValueError("mumin must be greater or equal 1.0")
+        if threshold_std <= 0:
+            raise ValueError("threshold must be greater than 0.")
 
         self.ab_crit = 1 if mu_min == 1 else (mu_min - 1) / log(mu_min)
         self.threshold_llr = threshold_std**2 / 2  # loglikelihood-ratio threshold
@@ -42,9 +62,20 @@ class Focus:
         self.curve_list.append(Curve(inf, 0.0, 0, 0.0))
         self.curve_list.append(Curve(0, 0.0, 0, 0.0))
 
-    def __call__(self, xs, bs):
-        assert len(xs) > 1
+    def __call__(
+        self,
+        xs: list[int],
+        bs: list[float],
+    ):
+        """
+        Args:
+            xs: a list of count data
+            bs: a list of background values
 
+        Returns:
+            A 3-tuple: significance value (std. devs), changepoint,  and
+            stopping iteration (trigger time).
+        """
         self.global_max = 0.0
         self.time_offset = 0
         for t, (x_t, b_t) in enumerate(zip(xs, bs)):
@@ -55,12 +86,12 @@ class Focus:
 
     def update(self, x, b):
         p = self.curve_list.pop(-1)
-        acc = Curve(p.a + x, p.b + b, p.t + 1, p.m)
-        while p.dominate(self.curve_list[-1], acc) <= 0:
+        acc = Curve(p.x + x, p.b + b, p.t + 1, p.m)
+        while dominate(p, self.curve_list[-1], acc) <= 0:
             p = self.curve_list.pop(-1)
 
-        if (acc.a - p.a) > self.ab_crit * (acc.b - p.b):
-            acc.m = p.m + p.ymax(acc)
+        if (acc.x - p.x) > self.ab_crit * (acc.b - p.b):
+            acc.m = p.m + ymax(p, acc)
             self.maximize(p, acc)
             self.curve_list.append(p)
             self.curve_list.append(acc)
@@ -79,7 +110,7 @@ class Focus:
                 break
             i -= 1
             p = self.curve_list[i]
-            m = p.ymax(acc)
+            m = ymax(p, acc)
         return
 
 
@@ -95,10 +126,10 @@ if __name__ == "__main__":
     num_samples = 90 * 60 * samples_per_second
     ts = np.linspace(0, 1, num_samples + 1)[:-1] * 90 * 60  # seconds
     true_background = 4 + 2 * np.sin(
-        2 * pi * np.linspace(0, 1, num_samples) + 2 * pi * stats.uniform().rvs(1)
+        2 * pi * np.linspace(0, 1, num_samples) + 2 * pi * stats.uniform().rvs()
     )
-    anomaly_duration = int(stats.uniform().rvs(1) * 10 * 64) + 1
-    anomaly_start = int(stats.uniform().rvs(1) * (num_samples - anomaly_duration))
+    anomaly_duration = int(stats.uniform().rvs() * 10 * 64) + 1
+    anomaly_start = int(stats.uniform().rvs() * (num_samples - anomaly_duration))
     print("simulated anomaly starts at {}".format(anomaly_start))
     background_counts = stats.poisson(mu=true_background).rvs(size=num_samples)
     anomaly_counts = (

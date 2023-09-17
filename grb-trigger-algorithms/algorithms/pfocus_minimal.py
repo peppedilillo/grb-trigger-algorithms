@@ -1,3 +1,7 @@
+"""
+A minimal implementation of Poisson-FOCuS with no optimiziation.
+"""
+
 from math import log
 
 
@@ -23,7 +27,22 @@ def focus_update(cs, x_t, b_t, c):
     return [(0, 0.0, 0)]
 
 
-def _focus(xs, bs, threshold):
+def focus(xs: list[int], bs: list[float], threshold: float):
+    """
+    This is the simplest implementation of Poisson-FOCuS.
+    Note that it does not convert loglikelihood ratio significance to std. devs.
+    This implies that if you want to run at 5 sigma threshold you should call
+    with threshold 12.5 and should expect triggers with significance > 12.5.
+
+    Args:
+        xs: a list of count data
+        bs: a list of background values
+        threshold: as a loglikelihood ratio, not std. devs.
+
+    Returns:
+        A 3-tuple: significance value (loglikelihood ratio), changepoint,  and
+        stopping iteration (trigger time).
+    """
     cs = [(0, 0.0, 0)]
 
     for t, (x_t, b_t) in enumerate(zip(xs, bs)):

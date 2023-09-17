@@ -1,3 +1,8 @@
+"""
+A wrapper to Poisson-FOCuS implementing background estimate via double
+exponential smoothing.
+"""
+
 from collections import deque
 from math import sqrt
 
@@ -11,34 +16,33 @@ class FOCuSDES:
         alpha: float,
         beta: float,
         m: int,
-        t_max: int = None,
         mu_min: float = 1.0,
-        sleep: int = None,
-        s_0: float = None,
-        b_0: float = None,
+        t_max: int | None = None,
+        sleep: int | None = None,
+        s_0: float | None = None,
+        b_0: float | None = None,
     ):
         """
-        params
-
-        threshold:  in standard deviation units.
-        alpha:      DES alpha (value) parameter.
-        beta:       DES beta (slope) parameter
-        m:          background estimate delay and forecast length.
-        mu_min:     FOCuS mu_min parameter.
-                    defaults to 0.0.
-        t_max:      maximum changepoint duration check.
-                    disabled by default
-        sleep:      dead time for automated s_0 initialization.
-        s_0:        DES init count parameter,
-                    defaults to averaged over first `sleep - m` counts.
-        b_0:        DES init slope parameter
-                    defaults to 0.0.
+        Args:
+            threshold:  in standard deviation units.
+            alpha: DES alpha (value) parameter.
+            beta: DES beta (slope) parameter
+            m: background estimate delay and forecast length.
+            t_max:  maximum changepoint duration, quality control.
+            disabled by default.
+            mu_min: FOCuS mu_min parameter. defaults to 1.
+            sleep: dead time for automated s_0 initialization.
+            if provided, it must be greater than m; else, defaults to m.
+            s_0: DES init count parameter.
+            must be greater than 0.
+            defaults to averaged over first `sleep - m` counts.
+            b_0: DES init slope parameter. must be greater or equal than 0.
+            defaults to 0.
         """
-        assert alpha >= 0.0
-        assert beta >= 0.0
-        assert (sleep is None) or (sleep > m >= 0)
-        assert ((s_0 is None) and (sleep is not None)) or (s_0 > 0)
-        assert (b_0 is None) or (b_0 >= 0)
+        if alpha < 0.:
+            raise ValueError("alpha must be non negative.")
+        if beta < 0.:
+            raise ValueError("beta must be non negative.")
 
         self.focus = Focus(threshold, mu_min=mu_min)
         self.buffer = deque([])
@@ -80,6 +84,7 @@ class FOCuSDES:
         called only if focus is over threshold and t_max is given.
         it recomputes the curve stack maximum, skipping curves earlier than
         t_max. useful with delayed background estimate.
+        TODO: this can be improved but for the purpose of the paper is ok.
         """
         if self.t_max is None:
             return sqrt(2 * self.focus.global_max), self.focus.time_offset
@@ -119,17 +124,24 @@ class FOCuSDES:
 
 
 def init(**kwargs):
-    def run(X):
+    """
+    For compatibility with exhaustive and conventional algorithms.
+    """
+    def run(xs):
         """
-        params
-        X:      counts generator or sequence object
+        Args:
+            xs: a list of count data
+
+        Returns:
+            A 3-tuple: significance value (std. devs), changepoint,  and
+            stopping iteration (trigger time).
         """
         focus_des = FOCuSDES(**init_parameters)
-        for t, x_t in enumerate(X):
+        for t, x_t in enumerate(xs):
             significance, offset = focus_des.step(x_t)
             if significance:
                 return significance, t - offset + 1, t
-        return 0.0, t + 1, t  # no change found by end of signal
+        return 0.0, t + 1, t
 
     init_parameters = kwargs
     return run

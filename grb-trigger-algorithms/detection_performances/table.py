@@ -63,5 +63,5 @@ def make_table(results_filepath):
 
 
 if __name__ == "__main__":
-    results_filepath = "table/results_dataset_grb180703949.pkl"
+    results_filepath = "outputs/results_dataset_grb180703949.pkl"
     print(make_table(results_filepath))
