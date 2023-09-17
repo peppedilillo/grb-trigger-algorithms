@@ -7,7 +7,7 @@ from math import sqrt
 from algorithms.pfocus import Focus
 
 
-def init(b: float, threshold: float, mu_min: float=1, skip: int=0):
+def init(b: float, threshold: float, mu_min: float = 1, skip: int = 0):
     """
     Args:
         b: the background rate.
@@ -18,6 +18,7 @@ def init(b: float, threshold: float, mu_min: float=1, skip: int=0):
     Returns:
         a trigger function. you run this on your data.
     """
+
     def run(xs: list[int]):
         """
         Args:

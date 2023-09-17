@@ -38,6 +38,7 @@ def init(
     Returns:
         a trigger function. you run this on your data.
     """
+
     def run(xs: list[int]):
         """
         Args:
@@ -65,7 +66,7 @@ def init(
                     time_offset = -h
             if global_max > threshold:
                 return global_max, t + time_offset + 1, t
-        return 0., t + 1, t
+        return 0.0, t + 1, t
 
     if (hmax is not None) and hmax <= 0:
         raise ValueError("hmax must be either None or a positive integer.")

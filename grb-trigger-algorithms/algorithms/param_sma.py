@@ -42,6 +42,7 @@ def init(
     Returns:
         a trigger function. you run this on your data.
     """
+
     def run(xs: list[int]):
         """
         Args:
@@ -59,7 +60,9 @@ def init(
             observations_buffer.append(x_t)
             if t >= bg_len:
                 bkg_rate = sumdq(observations_buffer, bg_len, bg_len) / bg_len
-                scheduled_tests = [(h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1]
+                scheduled_tests = [
+                    (h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1
+                ]
                 for h, g in scheduled_tests:
                     if (t + 1) % h == g:
                         x = sumdq(observations_buffer, min(buflen, t + 1), h)

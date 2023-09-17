@@ -2,7 +2,7 @@
 This scipts runs the computational efficiency tests.
 The use of the exhaustive search algorithm is disabled by default.
 You can enable it uncommenting line 179.
-The script is parallelized with joblib. By default it uses 4 threads.
+The script is parallelized with joblib. By default it uses 8 threads.
 """
 
 import pickle
@@ -222,4 +222,4 @@ def main(nthreads=8):
 
 
 if __name__ == "__main__":
-    main(nthreads=4)
+    main(nthreads=8)

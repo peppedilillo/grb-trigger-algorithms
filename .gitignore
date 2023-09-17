@@ -5,6 +5,7 @@
 **/cmake-build-debug/
 grb-trigger-algorithms/algorithms/tests/
 grb-trigger-algorithms/algorithms/pfocus_minimal_test.py
+grb-trigger-algorithms/algorithms/pfocus_test.py
 grb-trigger-algorithms/algorithms_c/pfocus_c/elements/
 grb-trigger-algorithms/algorithms_c/pfocus_c/tests/
 grb-trigger-algorithms/computational_efficiency/inputs/*

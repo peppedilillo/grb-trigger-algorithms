@@ -84,12 +84,6 @@ class Focus:
             checked_maxima.append(p)
         return checked_maxima
 
-    def triggered(self):
-        return self.global_max > self.corrected_threshold
-
-    def get_acc(self):
-        acc = self.curve_list
-
 
 def focus(X, lambda_1, threshold, mu_min=None):
     assert mu_min >= 1

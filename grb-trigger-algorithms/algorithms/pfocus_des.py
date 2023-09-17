@@ -39,9 +39,9 @@ class FOCuSDES:
             b_0: DES init slope parameter. must be greater or equal than 0.
             defaults to 0.
         """
-        if alpha < 0.:
+        if alpha < 0.0:
             raise ValueError("alpha must be non negative.")
-        if beta < 0.:
+        if beta < 0.0:
             raise ValueError("beta must be non negative.")
 
         self.focus = Focus(threshold, mu_min=mu_min)
@@ -127,6 +127,7 @@ def init(**kwargs):
     """
     For compatibility with exhaustive and conventional algorithms.
     """
+
     def run(xs):
         """
         Args:
