@@ -6,7 +6,7 @@ exponential smoothing.
 from collections import deque
 from math import sqrt
 
-from algorithms.pfocus import Focus
+from algorithms.pfocus import Focus, ymax
 
 
 class FOCuSDES:
@@ -94,10 +94,10 @@ class FOCuSDES:
         for q in self.focus.curve_list[::-1][:-1]:
             if acc.t - q.t > self.t_max:
                 break
-            q_max = q.ymax(acc)
+            q_max = ymax(q, acc)
             if q_max > max_significance:
                 offset = acc.t - q.t
-                max_significance = q.ymax(acc)
+                max_significance = ymax(q, acc)
         self.focus.curve_list.append(acc)
         return sqrt(2 * max_significance), offset
 
