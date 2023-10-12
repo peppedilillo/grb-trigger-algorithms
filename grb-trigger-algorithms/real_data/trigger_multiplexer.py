@@ -1,3 +1,4 @@
+import warnings
 import logging
 from math import sqrt
 
@@ -35,7 +36,7 @@ def filter_keys(ls, ns, rs=None):
     return sorted(get_keys(out_index, out_range))
 
 
-def trigger_mux(observations_df, trig, thresholds, stride, t_start=0, **trig_params):
+def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_params):
     def reset_trigger(detector_key):
         trigs[detector_key] = trig(**trig_params)
         gms[detector_key] = 0
@@ -78,6 +79,10 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0, **trig_par
         # deals with occasional detector turn off
         elif not np.any(counts_arr[t]):
             for n, _ in det_keys:
+                warnings.warn(
+                    f"All detectors seems to be off. Resetting all triggers. "
+                    f"MET: {mets_arr[t]}"
+                )
                 reset_trigger(n)
             try:
                 next_out, *_ = np.where(np.all(counts_arr[t:], axis=1))[0]
@@ -92,7 +97,14 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0, **trig_par
 
         for n, det_key in zip(det_indeces, det_names):
             x_t = counts_arr[t, n]
-            global_max, time_offset = trigs[n].step(x_t)
+            try:
+                global_max, time_offset = trigs[n].step(x_t)
+            except ValueError:
+                warnings.warn(
+                    f"Corrupted background estimate over {det_key}. Resetting this trigger."
+                    f"MET: {mets_arr[t]}"
+                )
+                reset_trigger(n)
             gms[n] = global_max
             tos[n] = time_offset
 
