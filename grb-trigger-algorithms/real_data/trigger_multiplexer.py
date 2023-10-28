@@ -41,7 +41,7 @@ def trigger_mux(
     trig,
     thresholds,
     stride,
-    t_start=0.,
+    t_start=0.0,
     max_consecutive_zeros=10,
     **trig_params,
 ):
@@ -142,7 +142,14 @@ def trigger_mux(
             time_offsets[n] = time_offset
 
         # trigger condition.
-        if len(np.unique(np.floor((np.argwhere(global_maximums > thresholds).T + 1) / 3))) > 1:
+        if (
+            len(
+                np.unique(
+                    np.floor((np.argwhere(global_maximums > thresholds).T + 1) / 3)
+                )
+            )
+            > 1
+        ):
             print(", found a trigger.")
             logging.info("\n--------")
             logging.info("New trigger [key: {:3d}]".format(len(trig_registry)))
@@ -151,13 +158,13 @@ def trigger_mux(
             logging.info("{:.1f}% done!".format(100 * t / nrows))
             logging.info("Iteration number: {}".format(t))
             trig_entry = [len(trig_registry), trig_met]
-            for i, (key, to, gm) in enumerate(zip(get_keys(), time_offsets, global_maximums)):
+            for i, (key, to, gm) in enumerate(
+                zip(get_keys(), time_offsets, global_maximums)
+            ):
                 if gm > thresholds[i]:
                     logging.info(
                         "det_name: {}, time-offset: {:3d}, significance {:.2f}".format(
-                            key,
-                            -to,
-                            gm
+                            key, -to, gm
                         )
                     )
                     trig_entry.append((key, to, sqrt(2 * gm)))

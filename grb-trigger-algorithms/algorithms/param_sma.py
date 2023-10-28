@@ -65,7 +65,9 @@ def init(
                 #  i'm not much concerned with the speed of this implementation.
                 #  if you are looking for an efficient implementation, check
                 #  algorithms_c/benchmark/
-                scheduled_tests = [(h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1]
+                scheduled_tests = [
+                    (h, g) for (h, g) in zip(hs, gs) if h <= t - bg_len + 1
+                ]
                 for h, g in scheduled_tests:
                     if (t + 1) % h == g:
                         x = sumdq(observations_buffer, min(buflen, t + 1), h)

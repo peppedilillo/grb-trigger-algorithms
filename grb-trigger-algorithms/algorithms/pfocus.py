@@ -80,7 +80,8 @@ class Focus:
         return 0.0, len(xs) + 1, len(xs)
 
     def update(self, x, b):
-        if b <= 0: raise ValueError("Background rate must be greater than zero.")
+        if b <= 0:
+            raise ValueError("Background rate must be greater than zero.")
         p = self.curve_list.pop(-1)
         acc = Curve(p.x + x, p.b + b, p.t + 1, p.m)
         while dominate(p, self.curve_list[-1], acc) <= 0:

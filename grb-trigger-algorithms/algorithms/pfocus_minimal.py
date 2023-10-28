@@ -22,7 +22,8 @@ def focus_maximize(cs):
 
 
 def focus_update(cs, x, b, c):
-    if b <= 0: raise ValueError("Background rate must be greater than zero.")
+    if b <= 0:
+        raise ValueError("Background rate must be greater than zero.")
     if cs and dominates(k := curve_update(cs[0], x, b), c):
         return [k] + focus_update(cs[1:], x, b, k)
     return [(0, 0.0, 0)]
