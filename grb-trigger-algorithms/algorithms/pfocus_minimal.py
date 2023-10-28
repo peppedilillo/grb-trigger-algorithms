@@ -44,6 +44,9 @@ def focus(xs: list[int], bs: list[float], threshold: float):
     Returns:
         A 3-tuple: significance value (loglikelihood ratio), changepoint,  and
         stopping iteration (trigger time).
+
+    Raises:
+        ValueError: if zero background is passed to the update function.
     """
     cs = [(0, 0.0, 0)]
 

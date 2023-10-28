@@ -27,6 +27,9 @@ def init(b: float, threshold: float, mu_min: float = 1, skip: int = 0):
         Returns:
             A 3-tuple: significance value (std. devs), changepoint,  and
             stopping iteration (trigger time).
+
+        Raises:
+            ValueError: if zero background is passed to the update function.
         """
         focus = Focus(threshold, mu_min=mu_min)
         t = None

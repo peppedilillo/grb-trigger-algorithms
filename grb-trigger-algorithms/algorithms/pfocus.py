@@ -67,6 +67,9 @@ class Focus:
         Returns:
             A 3-tuple: significance value (std. devs), changepoint,  and
             stopping iteration (trigger time).
+
+        Raises:
+            ValueError: if zero background is passed to the update function.
         """
         self.global_max = 0.0
         self.time_offset = 0
