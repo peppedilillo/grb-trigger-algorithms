@@ -148,6 +148,8 @@ These include:
   and latex tables (`/grb-trigger-algorithms/computationa_efficiency/tables`)
 * Result tables for our statistical power tests (in `/grb-trigger-algorithms/detection_performances/tables`)
 
+We left some more message and bonus tracks here and there :).
+
 ## Uninstalling
 
 To uninstall delete the repository local folder.

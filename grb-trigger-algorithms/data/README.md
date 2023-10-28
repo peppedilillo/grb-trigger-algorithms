@@ -1,6 +1,5 @@
-Here you are supposed to put the dataset from [Zenodo](https://doi.org/10.5281/zenodo.8334676).
-Take a look at the main README file.
-This folder structure should look something like this:
+Here you are supposed to put the dataset from Zenodo, see the main README in the root folder.
+After downloading the dataset, this folder structure should look something like this:
 
 ```
 grb-trigger-algorithm
