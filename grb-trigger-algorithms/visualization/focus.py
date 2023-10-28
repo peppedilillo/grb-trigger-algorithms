@@ -1,3 +1,9 @@
+"""
+This is a specialized implementation for visualization purposes.
+Might be outdated when compared to the implementation, in ../algorithms/pfocus.py.
+Do not use this implementation for serious use cases!!
+"""
+
 from math import inf, log, sqrt
 
 
@@ -60,14 +66,14 @@ class Focus:
         while p.dominate(self.curve_list[-1], acc) <= 0:
             p = self.curve_list.pop(-1)
 
-        if (acc.a - p.a) <= self.ab_crit * (acc.b - p.b):
-            self.curve_list = self.curve_list[:1]
-            self.curve_list.append(Curve(0, 0.0, 0, 0.0))
-        else:
+        if (acc.a - p.a) > self.ab_crit * (acc.b - p.b):
             acc.m = p.m + p.ymax(acc)
             checked_maxima = self.maximize(p, acc)
             self.curve_list.append(p)
             self.curve_list.append(acc)
+        else:
+            self.curve_list = self.curve_list[:1]
+            self.curve_list.append(Curve(0, 0.0, 0, 0.0))
         return checked_maxima
 
     def maximize(self, p, acc):
