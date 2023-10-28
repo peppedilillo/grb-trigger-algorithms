@@ -1,6 +1,6 @@
 """
 This is a specialized implementation for visualization purposes.
-Might be outdated when compared to the implementation, in ../algorithms/pfocus.py.
+Might be outdated when compared to the implementation in ../algorithms/pfocus.py.
 Do not use this implementation for serious use cases!!
 """
 

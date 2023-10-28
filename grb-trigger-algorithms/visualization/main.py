@@ -1,3 +1,7 @@
+"""
+Main script for producing checker plots.
+"""
+
 import checkers
 import matplotlib.pyplot as plt
 from data import data

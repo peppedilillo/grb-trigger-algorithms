@@ -1,3 +1,7 @@
+"""
+Generate some poisson distributed data with an anomaly for visualization.
+"""
+
 import numpy as np
 import scipy.stats as sts
 

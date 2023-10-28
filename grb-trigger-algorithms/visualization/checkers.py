@@ -1,3 +1,7 @@
+"""
+Matplotlib code for producing checker plots of different algorithms.
+"""
+
 import warnings
 
 import matplotlib.pyplot as plt
