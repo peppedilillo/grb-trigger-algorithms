@@ -142,14 +142,7 @@ def trigger_mux(
             time_offsets[n] = time_offset
 
         # trigger condition.
-        if (
-            len(
-                np.unique(
-                    np.floor((np.argwhere(global_maximums > thresholds).T + 1) / 3)
-                )
-            )
-            > 1
-        ):
+        if len(np.unique(np.floor((np.argwhere(global_maximums > thresholds).T + 1) / 3))) > 1:
             print(", found a trigger.")
             logging.info("\n--------")
             logging.info("New trigger [key: {:3d}]".format(len(trig_registry)))
