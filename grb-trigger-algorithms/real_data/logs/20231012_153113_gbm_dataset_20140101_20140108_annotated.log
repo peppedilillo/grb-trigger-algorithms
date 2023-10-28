@@ -1,0 +1,329 @@
+INFO:root:Running on datafile: ./data/gbm_dataset_20140101_20140108.zip.
+INFO:root:Trigger algorithm: FOCuSDES.
+INFO:root:Trigger parameters: {'threshold': 5.0, 'alpha': 0.002, 'beta': 0.0, 'm': 250, 't_max': 250, 'sleep': 1062, 'mu_min': 1.1}
+INFO:root:
+--------
+INFO:root:New trigger [key:   0] > SFLARE14010178
+INFO:root:MET: 410294683.947854. > 2014-01-01 18:44:40.948 UTC
+INFO:root:9.8% done!
+INFO:root:Iteration number: 4225058
+INFO:root:det_name: n0_r1, time-offset: -144, significance 5.93
+INFO:root:det_name: n1_r1, time-offset: -136, significance 5.11
+INFO:root:
+--------
+INFO:root:New trigger [key:   1] > uncertain
+INFO:root:MET: 410299390.555854. > 2014-01-01 20:03:07.556 UTC
+INFO:root:10.5% done!
+INFO:root:Iteration number: 4519221
+INFO:root:det_name: n6_r1, time-offset:  -9, significance 5.06
+INFO:root:det_name: n8_r1, time-offset:  -3, significance 5.50
+INFO:root:
+--------
+INFO:root:New trigger [key:   2] > uncertain
+INFO:root:MET: 410299746.187854. > 2014-01-01 20:09:03.188 UTC
+INFO:root:10.5% done!
+INFO:root:Iteration number: 4541448
+INFO:root:det_name: n6_r1, time-offset:  -3, significance 5.28
+INFO:root:det_name: nb_r1, time-offset:  -3, significance 5.27
+INFO:root:
+--------
+INFO:root:New trigger [key:   3] > uncertain, seen also on n6, nb
+INFO:root:MET: 410304166.779854. > 2014-01-01 21:22:43.780 UTC
+INFO:root:11.2% done!
+INFO:root:Iteration number: 4817735
+INFO:root:det_name: n7_r1, time-offset:  -3, significance 6.11
+INFO:root:det_name: n8_r1, time-offset:  -3, significance 6.57
+INFO:root:
+--------
+INFO:root:New trigger [key:   4] > SFLARE14010196
+INFO:root:MET: 410310656.939854. > 2014-01-01 23:10:53.940 UTC
+INFO:root:12.1% done!
+INFO:root:Iteration number: 5223370
+INFO:root:det_name: n0_r1, time-offset: -84, significance 5.94
+INFO:root:det_name: n1_r1, time-offset: -115, significance 5.05
+INFO:root:
+--------
+INFO:root:New trigger [key:   5] > SFLARE14010208
+INFO:root:MET: 410320945.835854. > 2014-01-02 02:02:22.836 UTC
+INFO:root:13.6% done!
+INFO:root:Iteration number: 5866426
+INFO:root:det_name: n0_r1, time-offset: -194, significance 5.06
+INFO:root:det_name: n3_r1, time-offset: -165, significance 5.09
+INFO:root:
+--------
+INFO:root:New trigger [key:   6] > SFLARE14010210
+INFO:root:MET: 410322767.339854. > 2014-01-02 02:32:44.340 UTC
+INFO:root:13.8% done!
+INFO:root:Iteration number: 5980270
+INFO:root:det_name: n1_r1, time-offset: -86, significance 5.06
+INFO:root:det_name: n3_r1, time-offset: -158, significance 5.03
+INFO:root:
+--------
+INFO:root:New trigger [key:   7] > uncertain
+INFO:root:MET: 410323479.595854. > 2014-01-02 02:44:36.596 UTC
+INFO:root:13.9% done!
+INFO:root:Iteration number: 6024786
+INFO:root:det_name: n6_r1, time-offset:  -2, significance 5.12
+INFO:root:det_name: n7_r1, time-offset:  -3, significance 5.14
+INFO:root:
+--------
+INFO:root:New trigger [key:   8] > SFLARE14010224
+INFO:root:MET: 410334297.691854. > 2014-01-02 05:44:54.692 UTC
+INFO:root:15.5% done!
+INFO:root:Iteration number: 6700917
+INFO:root:det_name: n0_r1, time-offset: -23, significance 5.22
+INFO:root:det_name: n3_r1, time-offset: -17, significance 6.56
+INFO:root:
+--------
+INFO:root:New trigger [key:   9] > SFLARE14010236
+INFO:root:MET: 410345018.507854. > 2014-01-02 08:43:35.508 UTC
+INFO:root:17.1% done!
+INFO:root:Iteration number: 7370968
+INFO:root:det_name: n0_r1, time-offset: -96, significance 8.18
+INFO:root:det_name: n3_r1, time-offset: -90, significance 5.20
+INFO:root:
+--------
+INFO:root:New trigger [key:  10] > uncertain, possibly false positive
+INFO:root:MET: 410357487.643854. > 2014-01-02 12:11:24.644 UTC
+INFO:root:18.9% done!
+INFO:root:Iteration number: 8150289
+INFO:root:det_name: n1_r1, time-offset: -198, significance 5.02
+INFO:root:det_name: n2_r1, time-offset: -213, significance 5.99
+INFO:root:
+--------
+INFO:root:New trigger [key:  11] > GRB140102887
+INFO:root:MET: 410390260.779854. > 2014-01-02 21:17:37.780 UTC
+INFO:root:23.6% done!
+INFO:root:Iteration number: 10198610
+INFO:root:det_name: n7_r1, time-offset:  -7, significance 5.21
+INFO:root:det_name: n9_r1, time-offset:  -3, significance 5.69
+INFO:root:
+--------
+INFO:root:New trigger [key:  12] > SFLARE14010290
+INFO:root:MET: 410391798.219854. > 2014-01-02 21:43:15.220 UTC
+INFO:root:23.8% done!
+INFO:root:Iteration number: 10294700
+INFO:root:det_name: n1_r1, time-offset: -90, significance 5.04
+INFO:root:det_name: n5_r1, time-offset: -115, significance 5.77
+INFO:root:
+--------
+INFO:root:New trigger [key:  13] > SFLARE14010310
+INFO:root:MET: 410408757.067854. > 2014-01-03 02:25:54.068 UTC
+INFO:root:26.3% done!
+INFO:root:Iteration number: 11354628
+INFO:root:det_name: n1_r1, time-offset: -213, significance 5.08
+INFO:root:det_name: n3_r1, time-offset: -138, significance 5.62
+INFO:root:
+--------
+MISSED LOCLPAR1401031
+it's long and slow, we rode through it.
+--------
+INFO:root:New trigger [key:  14] > SFLARE14010316
+INFO:root:MET: 410414338.491854. > 2014-01-03 03:58:55.492 UTC
+INFO:root:27.1% done!
+INFO:root:Iteration number: 11703467
+INFO:root:det_name: n0_r1, time-offset: -63, significance 5.56
+INFO:root:det_name: n1_r1, time-offset: -221, significance 5.01
+INFO:root:
+--------
+MISSED SFLARE14010353
+GBM trigger algorithm 25 (<50 keV, untested)
+--------
+MISSED SFLARE14010363
+GBM trigger algorithm 25 (<50 keV, untested)
+--------
+INFO:root:New trigger [key:  15] > SFLARE14010383
+INFO:root:MET: 410472375.755854. > 2014-01-03 20:06:12.756 UTC
+INFO:root:35.5% done!
+INFO:root:Iteration number: 15330796
+INFO:root:det_name: n0_r1, time-offset: -177, significance 5.25
+INFO:root:det_name: n5_r1, time-offset: -131, significance 5.16
+INFO:root:
+--------
+INFO:root:New trigger [key:  16] > SFLARE14010388
+INFO:root:MET: 410476326.843854. > 2014-01-03 21:12:03.844 UTC
+INFO:root:36.1% done!
+INFO:root:Iteration number: 15577739
+INFO:root:det_name: n0_r1, time-offset: -145, significance 5.18
+INFO:root:det_name: n3_r1, time-offset: -117, significance 5.07
+INFO:root:
+--------
+MISSED LOCLPAR1401041
+it's long and slow, we rode through it.
+--------
+INFO:root:New trigger [key:  17] > SFLARE14010443
+INFO:root:MET: 410523564.523854. > 2014-01-04 10:19:21.524 UTC
+INFO:root:42.9% done!
+INFO:root:Iteration number: 18530094
+INFO:root:det_name: n3_r1, time-offset: -183, significance 5.09
+INFO:root:det_name: n5_r1, time-offset: -231, significance 5.32
+INFO:root:
+--------
+MISSED TGF140104715
+GBM trigger algorithm 119 (BGO, untested)
+--------
+INFO:root:New trigger [key:  18] > GRB140104731
+INFO:root:MET: 410549525.451854. > 2014-01-04 17:32:02.452 UTC
+INFO:root:46.6% done!
+INFO:root:Iteration number: 20152652
+INFO:root:det_name: n6_r1, time-offset: -80, significance 5.63
+INFO:root:det_name: n7_r1, time-offset: -124, significance 5.01
+INFO:root:
+--------
+INFO:root:New trigger [key:  19] > SFLARE14010479
+INFO:root:MET: 410555159.5958541. > 2014-01-04 19:05:56.596 UTC
+INFO:root:47.5% done!
+INFO:root:Iteration number: 20504786
+INFO:root:det_name: n0_r1, time-offset: -97, significance 5.01
+INFO:root:det_name: n3_r1, time-offset: -146, significance 5.16
+INFO:root:
+--------
+INFO:root:New trigger [key:  20] > uncertain
+INFO:root:MET: 410555917.4198541. > 2014-01-04 19:18:34.420 UTC
+INFO:root:47.6% done!
+INFO:root:Iteration number: 20552150
+INFO:root:det_name: n5_r1, time-offset:  -4, significance 5.17
+INFO:root:det_name: n8_r1, time-offset:  -4, significance 5.48
+INFO:root:
+--------
+INFO:root:New trigger [key:  21] > uncertain
+INFO:root:MET: 410556407.323854. > 2014-01-04 19:26:44.324 UTC
+INFO:root:47.6% done!
+INFO:root:Iteration number: 20582769
+INFO:root:det_name: n8_r1, time-offset:  -5, significance 5.68
+INFO:root:det_name: na_r1, time-offset:  -5, significance 5.33
+INFO:root:
+--------
+INFO:root:New trigger [key:  22] > uncertain
+INFO:root:MET: 410556762.283854. > 2014-01-04 19:32:39.284 UTC
+INFO:root:47.7% done!
+INFO:root:Iteration number: 20604954
+INFO:root:det_name: n7_r1, time-offset:  -3, significance 5.13
+INFO:root:det_name: n9_r1, time-offset:  -3, significance 5.75
+INFO:root:
+--------
+INFO:root:New trigger [key:  23] > uncertain
+INFO:root:MET: 410557112.251854. > 2014-01-04 19:38:29.252 UTC
+INFO:root:47.7% done!
+INFO:root:Iteration number: 20626827
+INFO:root:det_name: n7_r1, time-offset:  -4, significance 6.43
+INFO:root:det_name: n9_r1, time-offset:  -6, significance 5.25
+INFO:root:
+--------
+INFO:root:New trigger [key:  24] > uncertain
+INFO:root:MET: 410563178.795854. > 2014-01-04 21:19:35.796 UTC
+INFO:root:48.6% done!
+INFO:root:Iteration number: 21005986
+INFO:root:det_name: n6_r1, time-offset:  -7, significance 5.89
+INFO:root:det_name: na_r1, time-offset:  -5, significance 7.12
+INFO:root:
+--------
+INFO:root:New trigger [key:  25] > uncertain
+INFO:root:MET: 410568048.555854. > 2014-01-04 22:40:45.556 UTC
+INFO:root:49.3% done!
+INFO:root:Iteration number: 21310346
+INFO:root:det_name: n6_r1, time-offset:  -2, significance 6.27
+INFO:root:det_name: n9_r1, time-offset:  -5, significance 5.14
+INFO:root:
+--------
+INFO:root:New trigger [key:  26] > uncertain
+INFO:root:MET: 410568417.2118541. > 2014-01-04 22:46:54.212 UTC
+INFO:root:49.4% done!
+INFO:root:Iteration number: 21333387
+INFO:root:det_name: n8_r1, time-offset:  -4, significance 5.21
+INFO:root:det_name: nb_r1, time-offset:  -4, significance 5.22
+INFO:root:
+--------
+INFO:root:New trigger [key:  27] > GRB140105065
+INFO:root:MET: 410578383.995854. > 2014-01-05 01:33:00.996 UTC
+INFO:root:50.8% done!
+INFO:root:Iteration number: 21956311
+INFO:root:det_name: n9_r1, time-offset:  -4, significance 6.05
+INFO:root:det_name: na_r1, time-offset:  -4, significance 5.47
+INFO:root:
+--------
+MISSED UNCERT14010514
+GBM trigger algorithm 117 (BGO, untested)
+--------
+INFO:root:New trigger [key:  28] > GRB140105748
+INFO:root:MET: 410637395.643854. > 2014-01-05 17:56:32.644 UTC
+INFO:root:59.4% done!
+INFO:root:Iteration number: 25644539
+INFO:root:det_name: n6_r1, time-offset: -14, significance 6.28
+INFO:root:det_name: n9_r1, time-offset: -18, significance 5.29
+INFO:root:det_name: na_r1, time-offset: -22, significance 5.03
+INFO:root:
+--------
+INFO:root:New trigger [key:  29] > uncertain
+INFO:root:MET: 410667708.043854. > 2014-01-06 02:21:45.044 UTC
+INFO:root:63.7% done!
+INFO:root:Iteration number: 27539064
+INFO:root:det_name: n4_r1, time-offset:  -5, significance 5.85
+INFO:root:det_name: n6_r1, time-offset:  -5, significance 5.46
+INFO:root:det_name: n7_r1, time-offset:  -6, significance 5.03
+INFO:root:det_name: n8_r1, time-offset:  -4, significance 5.13
+INFO:root:
+--------
+INFO:root:New trigger [key:  30] > GRB140106345
+INFO:root:MET: 410689005.9158541. > 2014-01-06 08:16:42.916 UTC
+INFO:root:66.8% done!
+INFO:root:Iteration number: 28870181
+INFO:root:det_name: n2_r1, time-offset: -125, significance 5.05
+INFO:root:det_name: n5_r1, time-offset: -59, significance 6.29
+INFO:root:
+--------
+MISSED SFLARE14010694
+GBM trigger algorithm 26 (<50 keV, untested)
+over much longer timescales (hundreds of seconds) the event could
+be detectable over 50-300 keV energy range.
+--------
+MISSED SFLARE14010792
+GBM trigger algorithm 26 (<50 keV, untested)
+--------
+INFO:root:New trigger [key:  31] > uncertain
+INFO:root:MET: 410812804.74785405. > 2014-01-07 18:40:01.748 UTC
+INFO:root:84.7% done!
+INFO:root:Iteration number: 36607608
+INFO:root:det_name: n1_r1, time-offset:  -4, significance 5.81
+INFO:root:det_name: n4_r1, time-offset:  -3, significance 5.20
+INFO:root:det_name: n9_r1, time-offset:  -3, significance 5.17
+INFO:root:
+--------
+INFO:root:New trigger [key:  32] > uncertain
+INFO:root:MET: 410813905.691854. > 2014-01-07 18:58:22.692 UTC
+INFO:root:84.9% done!
+INFO:root:Iteration number: 36676417
+INFO:root:det_name: n6_r1, time-offset:  -6, significance 5.32
+INFO:root:det_name: n8_r1, time-offset:  -6, significance 5.03
+INFO:root:det_name: n9_r1, time-offset:  -6, significance 5.62
+INFO:root:
+--------
+INFO:root:New trigger [key:  33] > uncertain
+INFO:root:MET: 410819366.443854. > 2014-01-07 20:29:23.444 UTC
+INFO:root:85.7% done!
+INFO:root:Iteration number: 37017714
+INFO:root:det_name: n6_r1, time-offset:  -6, significance 6.00
+INFO:root:det_name: n7_r1, time-offset:  -6, significance 5.78
+INFO:root:det_name: n8_r1, time-offset:  -6, significance 6.32
+INFO:root:
+--------
+MISSED SFLARE14010792
+GBM trigger algorithm 26 (<50 keV, untested)
+--------
+INFO:root:New trigger [key:  34] > SFLARE14010813
+INFO:root:MET: 410843209.531854. > 2014-01-08 03:06:46.532 UTC
+INFO:root:89.1% done!
+INFO:root:Iteration number: 38507907
+INFO:root:det_name: n0_r1, time-offset: -226, significance 5.01
+INFO:root:det_name: n1_r1, time-offset: -215, significance 5.42
+INFO:root:
+--------
+MISSED SFLARE14010854
+GBM trigger algorithm 26 (<50 keV, untested)
+--------
+INFO:root:New trigger [key:  35] > GRB140108721
+INFO:root:MET: 410894325.755854. > 2014-01-08 17:18:42.756 UTC
+INFO:root:96.5% done!
+INFO:root:Iteration number: 41702671
+INFO:root:det_name: n2_r1, time-offset: -62, significance 5.02
+INFO:root:det_name: na_r1, time-offset: -22, significance 5.27

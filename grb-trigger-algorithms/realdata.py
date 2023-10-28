@@ -12,7 +12,7 @@ from algorithms.pfocus_des import FOCuSDES
 from real_data.trigger_multiplexer import trigger_mux
 
 if __name__ == "__main__":
-    datafile = "./data/gbm_dataset_50to300keV_binned16ms_20171002_20171009.zip"
+    datafile = "./data/gbm_dataset_20171002_20171009.zip"
     trigger = FOCuSDES
     threshold = 5.0
     threshold_array = np.array([np.inf, threshold, np.inf] * 12)
@@ -39,6 +39,6 @@ if __name__ == "__main__":
     logging.info("Trigger algorithm: {}.".format(trigger.__name__))
     logging.info("Trigger parameters: {}".format(parameters))
 
-    obs_df = pd.read_csv(datafile)
+    obs_df = pd.read_csv(datafile, compression="zip")
     res = trigger_mux(obs_df, trigger, threshold_array, stride=18750, **parameters)
     print("I've found {} triggers. I'm done, ciao!.".format(len(res)))

@@ -1,0 +1,94 @@
+INFO:root:Running on datafile: ./data/gbm_dataset_20190601_20190608.zip.zip.
+INFO:root:Trigger algorithm: FOCuSDES.
+INFO:root:Trigger parameters: {'threshold': 5.0, 'alpha': 0.002, 'beta': 0.0, 'm': 250, 't_max': 250, 'sleep': 1062, 'mu_min': 1.1}
+INFO:root:
+--------
+INFO:root:New trigger [key:   0] > in untriggered catalog
+INFO:root:MET: 581055891.11146. > 2019-06-01 04:24:46.111 UTC
+INFO:root:2.3% done!
+INFO:root:Iteration number: 1000381
+INFO:root:det_name: n2_r1, time-offset:  -3, significance 5.34
+INFO:root:det_name: n5_r1, time-offset:  -3, significance 5.14
+INFO:root:det_name: n7_r1, time-offset:  -1, significance 5.20
+INFO:root:
+--------
+INFO:root:New trigger [key:   1] > GRB190601325
+INFO:root:MET: 581068049.14346. > 2019-06-01 07:47:24.143 UTC
+INFO:root:4.1% done!
+INFO:root:Iteration number: 1760258
+INFO:root:det_name: n4_r1, time-offset:  -7, significance 5.25
+INFO:root:det_name: n8_r1, time-offset:  -5, significance 5.31
+INFO:root:
+--------
+INFO:root:New trigger [key:   2] > in untriggered catalog
+INFO:root:MET: 581117737.25546. > 2019-06-01 21:35:32.255 UTC
+INFO:root:11.3% done!
+INFO:root:Iteration number: 4865765
+INFO:root:det_name: n3_r1, time-offset:  -5, significance 5.18
+INFO:root:det_name: n7_r1, time-offset:  -4, significance 5.56
+INFO:root:det_name: n9_r1, time-offset:  -3, significance 5.25
+INFO:root:
+--------
+INFO:root:New trigger [key:   3] > GRB190603795
+INFO:root:MET: 581281470.90346. > 2019-06-03 19:04:25.903 UTC
+INFO:root:34.9% done!
+INFO:root:Iteration number: 15099118
+INFO:root:det_name: n0_r1, time-offset: -52, significance 5.25
+INFO:root:det_name: n4_r1, time-offset: -49, significance 5.61
+INFO:root:
+--------
+INFO:root:New trigger [key:   4] > GRB190604446
+INFO:root:MET: 581337761.51146. > 2019-06-04 10:42:36.511 UTC
+INFO:root:43.1% done!
+INFO:root:Iteration number: 18617281
+INFO:root:det_name: n3_r1, time-offset: -232, significance 5.11
+INFO:root:det_name: n7_r1, time-offset: -50, significance 5.23
+INFO:root:
+--------
+MISSED TGF190604577
+GBM trigger algorithm 116 (BGO, untested)
+--------
+INFO:root:New trigger [key:   5] > GRB190605974
+INFO:root:MET: 581469751.99146. > 2019-06-05 23:22:26.991 UTC
+INFO:root:62.2% done!
+INFO:root:Iteration number: 26866686
+INFO:root:det_name: n7_r1, time-offset: -24, significance 5.07
+INFO:root:det_name: n8_r1, time-offset: -25, significance 5.96
+INFO:root:
+--------
+INFO:root:New trigger [key:   6] > GRB190606080
+INFO:root:MET: 581478912.75946. > 2019-06-06 01:55:07.759 UTC
+INFO:root:63.5% done!
+INFO:root:Iteration number: 27439234
+INFO:root:det_name: n0_r1, time-offset:  -2, significance 6.58
+INFO:root:det_name: n1_r1, time-offset:  -2, significance 8.03
+INFO:root:det_name: n2_r1, time-offset:  -1, significance 5.73
+INFO:root:det_name: n3_r1, time-offset:  -1, significance 6.72
+INFO:root:det_name: n5_r1, time-offset:  -2, significance 6.61
+INFO:root:
+--------
+INFO:root:New trigger [key:   7] > GRB190607071
+INFO:root:MET: 581564569.2714599. > 2019-06-07 01:42:44.271 UTC
+INFO:root:75.9% done!
+INFO:root:Iteration number: 32792766
+INFO:root:det_name: na_r1, time-offset: -106, significance 5.01
+INFO:root:det_name: nb_r1, time-offset: -120, significance 7.26
+INFO:root:
+--------
+INFO:root:New trigger [key:   8] > GRB190608009
+INFO:root:MET: 581645542.64746. > 2019-06-08 00:12:17.647 UTC
+INFO:root:87.6% done!
+INFO:root:Iteration number: 37853602
+INFO:root:det_name: na_r1, time-offset: -174, significance 5.76
+INFO:root:det_name: nb_r1, time-offset: -120, significance 5.00
+INFO:root:
+--------
+INFO:root:New trigger [key:   9] > LOCLPAR1906088
+INFO:root:MET: 581719010.6794599. > 2019-06-08 20:36:45.679 UTC [*]
+INFO:root:98.2% done!
+INFO:root:Iteration number: 42445354
+INFO:root:det_name: n0_r1, time-offset: -250, significance 5.28
+INFO:root:det_name: nb_r1, time-offset: -247, significance 5.01
+
+
+[*] 8 seconds before GBM trigger

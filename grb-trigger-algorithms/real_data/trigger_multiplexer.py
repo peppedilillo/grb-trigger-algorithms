@@ -36,11 +36,19 @@ def filter_keys(ls, ns, rs=None):
     return sorted(get_keys(out_index, out_range))
 
 
-def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_params):
+def trigger_mux(
+    observations_df,
+    trig,
+    thresholds,
+    stride,
+    t_start=0.,
+    max_consecutive_zeros=10,
+    **trig_params,
+):
     def reset_trigger(detector_key):
         trigs[detector_key] = trig(**trig_params)
-        gms[detector_key] = 0
-        tos[detector_key] = 0
+        global_maximums[detector_key] = 0
+        time_offsets[detector_key] = 0
         return True
 
     ndet = len(thresholds)
@@ -51,8 +59,9 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_pa
     det_keys = [(i, k) for i, k in enumerate(get_keys()) if np.isfinite(thresholds[i])]
     det_indeces, det_names = zip(*det_keys)
 
-    gms = np.array([0.0 for _ in range(ndet)])
-    tos = np.array([0 for _ in range(ndet)])
+    consecutive_zeros = np.array([0 for _ in range(ndet)])
+    global_maximums = np.array([0.0 for _ in range(ndet)])
+    time_offsets = np.array([0 for _ in range(ndet)])
     trigs = [trig(**trig_params) for _ in range(ndet)]
     trig_registry = []
 
@@ -65,6 +74,8 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_pa
         if saa_arr[t]:
             for n, _ in det_keys:
                 reset_trigger(n)
+                consecutive_zeros[n] = 0
+
             try:
                 next_out, *_ = np.where(saa_arr[t:] == 0)[0]
             except ValueError:
@@ -76,14 +87,16 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_pa
                 t += next_out
             continue
 
-        # deals with occasional detector turn off
+        # deals with occasionally detectors turning off at same time
         elif not np.any(counts_arr[t]):
             for n, _ in det_keys:
                 warnings.warn(
-                    f"All detectors seems to be off. Resetting all triggers. "
+                    f"All detectors seems to be off. "
+                    f"Resetting all triggers. "
                     f"MET: {mets_arr[t]}"
                 )
                 reset_trigger(n)
+                consecutive_zeros[n] = 0
             try:
                 next_out, *_ = np.where(np.all(counts_arr[t:], axis=1))[0]
             except ValueError:
@@ -97,19 +110,39 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_pa
 
         for n, det_key in zip(det_indeces, det_names):
             x_t = counts_arr[t, n]
+            if x_t <= 0:
+                consecutive_zeros[n] += 1
+            else:
+                consecutive_zeros[n] = 0
+
+            if consecutive_zeros[n] > max_consecutive_zeros:
+                # data may contains segments in which the counts of some detector
+                # is constantly zero because the detector is turned off.
+                # this happens most often with sun-facing detectors.
+                # if we pass too much zero data to the trigger, they will
+                # pollute the background estimate, possibly causing
+                # false detection. when we detect this, we restart the trigger.
+                reset_trigger(n)
+                warnings.warn(
+                    f"Found a bad data segment for detector {det_key}. "
+                    f"Resetting the corresponding trigger. "
+                    f"MET: {mets_arr[t]}"
+                )
+                continue
+
             try:
                 global_max, time_offset = trigs[n].step(x_t)
             except ValueError:
-                warnings.warn(
-                    f"Corrupted background estimate over {det_key}. Resetting this trigger."
+                raise ValueError(
+                    f"Corrupted background estimate over {det_key}. "
+                    f"Resetting this trigger."
                     f"MET: {mets_arr[t]}"
                 )
-                reset_trigger(n)
-            gms[n] = global_max
-            tos[n] = time_offset
+            global_maximums[n] = global_max
+            time_offsets[n] = time_offset
 
         # trigger condition.
-        if len(np.unique(np.floor((np.argwhere(gms > thresholds).T + 1) / 3))) > 1:
+        if len(np.unique(np.floor((np.argwhere(global_maximums > thresholds).T + 1) / 3))) > 1:
             print(", found a trigger.")
             logging.info("\n--------")
             logging.info("New trigger [key: {:3d}]".format(len(trig_registry)))
@@ -118,19 +151,20 @@ def trigger_mux(observations_df, trig, thresholds, stride, t_start=0., **trig_pa
             logging.info("{:.1f}% done!".format(100 * t / nrows))
             logging.info("Iteration number: {}".format(t))
             trig_entry = [len(trig_registry), trig_met]
-            for i, (key, to, gm) in enumerate(zip(get_keys(), tos, gms)):
+            for i, (key, to, gm) in enumerate(zip(get_keys(), time_offsets, global_maximums)):
                 if gm > thresholds[i]:
                     logging.info(
                         "det_name: {}, time-offset: {:3d}, significance {:.2f}".format(
                             key,
                             -to,
-                            gm,
+                            gm
                         )
                     )
                     trig_entry.append((key, to, sqrt(2 * gm)))
             trig_registry.append(tuple(trig_entry))
             for n, _ in det_keys:
                 reset_trigger(n)
+                consecutive_zeros[n] = 0
             t += stride
         else:
             t += 1

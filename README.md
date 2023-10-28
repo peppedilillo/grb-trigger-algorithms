@@ -70,7 +70,9 @@ grb-trigger-algorithm
 | | |- \README.md
 | | |- simulated_dataset_grb180703949.fits
 | | |- simulated_dataset_grb120707800.fits
-| | |- gbm_dataset_50to300keV_binned16ms_20171002_20171009.zip
+| | |- gbm_dataset_20140101_20140108.zip
+| | |- gbm_dataset_20171002_20171009.zip
+| | |- gbm_dataset_20190601_20190608.zip
 | | |- simulated_dataset_compeff
 | | | |- pois_l4_n2048_0000.txt
 | | | |- ..
@@ -129,6 +131,19 @@ To run the test move to the `grb-trigger-algorithms` folder with your terminal a
 
 Results will be stored in `grb-trigger-algorithms/detection_performances/outputs`.
 We also provide scripts to plot and table the results, see `plot.py` and `table.py` in `grb-trigger-algorithms/detection_performances/`.
+
+## Other material
+The folder `/grb-trigger-algorithms/visualization` contains the code used for creating the "checker plots" representing the operations of different algorithms (Figure 1 and Figure 2 of the paper).
+
+We provide some non-code, non-data material with this repository.
+These include:
+* Annotated logs for our runs over Fermi data, for all periods considered in the paper.
+  These files are located in the folder `/grb-trigger-algorithms/real_data/logs`.
+* Plots for all the transients observed with Fermi-GBM which trigger Poisson-FOCuS and have no counterpart in official catalogs.
+  These files are in the folder `/grb-trigger-algorithms/real_data/plots`.
+* Results from our computational efficiency tests (in `/grb-trigger-algorithms/computationa_efficiency/outputs`)
+  and latex tables (`/grb-trigger-algorithms/computationa_efficiency/tables`)
+* Result tables for our statistical power tests (in `/grb-trigger-algorithms/detection_performances/tables`)
 
 ## Uninstalling
 

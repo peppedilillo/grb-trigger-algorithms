@@ -116,6 +116,8 @@ class FOCuSDES:
         x_t_m = self.buffer.popleft()
         self.des_update(x_t_m)
         self.lambda_t = self.s_t + self.m * self.b_t
+        if self.lambda_t <= 0:
+            raise ValueError("zero background.")
         self.focus.update(x, self.lambda_t)
         if self.focus.global_max:
             significance, offset = self.qc()
