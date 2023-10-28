@@ -18,7 +18,10 @@ The paper deals with algorithms for detecting gamma-ray bursts.
 
 ## Data
 
-You can download the data used in this research from [Zenodo](https://doi.org/10.5281/zenodo.8334676).
+You can download the data used in this research from [Zenodo](https://zenodo.org/records/10034655) or clicking on the following badge:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10034655.svg)](https://doi.org/10.5281/zenodo.10034655)
+
 
 ## Setup
 

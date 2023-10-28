@@ -1,5 +1,5 @@
 """
-A minimal implementation of Poisson-FOCuS with no optimiziation.
+A minimal implementation of Poisson-FOCuS with no optimization.
 """
 
 from math import log
@@ -21,9 +21,10 @@ def focus_maximize(cs):
     return max([(c[0] and curve_max(c) or 0, c[2]) for c in cs])
 
 
-def focus_update(cs, x_t, b_t, c):
-    if cs and dominates(k := curve_update(cs[0], x_t, b_t), c):
-        return [k] + focus_update(cs[1:], x_t, b_t, k)
+def focus_update(cs, x, b, c):
+    if b <= 0: raise ValueError("Background rate must be greater than zero.")
+    if cs and dominates(k := curve_update(cs[0], x, b), c):
+        return [k] + focus_update(cs[1:], x, b, k)
     return [(0, 0.0, 0)]
 
 
