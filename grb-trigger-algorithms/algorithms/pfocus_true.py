@@ -41,6 +41,8 @@ def init(b: float, threshold: float, mu_min: float = 1, skip: int = 0):
                 return sqrt(2 * focus.global_max), t - focus.time_offset + 1, t
         return 0, t + 1, t
 
+    if b <= 0:
+        raise ValueError("background rate must be greater than zero.")
     if mu_min < 1:
         raise ValueError("mumin must be greater or equal 1.0")
     if threshold <= 0:

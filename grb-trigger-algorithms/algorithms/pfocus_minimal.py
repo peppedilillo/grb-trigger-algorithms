@@ -22,8 +22,6 @@ def focus_maximize(cs):
 
 
 def focus_update(cs, x, b, c):
-    if b <= 0:
-        raise ValueError("Background rate must be greater than zero.")
     if cs and dominates(k := curve_update(cs[0], x, b), c):
         return [k] + focus_update(cs[1:], x, b, k)
     return [(0, 0.0, 0)]
@@ -52,6 +50,8 @@ def focus(xs: list[int], bs: list[float], threshold: float):
     cs = [(0, 0.0, 0)]
 
     for t, (x_t, b_t) in enumerate(zip(xs, bs)):
+        if b_t <= 0:
+            raise ValueError("background rate must be greater than zero.")
         cs = focus_update(cs, x_t, b_t, (1, 1.0, 0))
         global_max, time_offset = focus_maximize(cs)
         if global_max > threshold:
