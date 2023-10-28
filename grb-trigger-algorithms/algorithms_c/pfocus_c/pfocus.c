@@ -89,6 +89,11 @@ void focus_maximize(Focus *f, Curve *p, Curve *acc) {
 }
 
 void focus_step(Focus *f, int x_t, double b_t) {
+    /*
+    b_t IS SUPPOSED TO BE GREATER THAN ZERO.
+    there was no need to deal with this for the purpose of the paper.
+    please be mindful of this with other applications.
+    */
     Stack *curves = f->curves;
     Curve *p = stack_pop(curves);
     Curve acc = {p->x + x_t, p->b + b_t, p->t + 1, p->m};
