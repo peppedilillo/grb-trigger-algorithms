@@ -1,5 +1,5 @@
 """
-An implementation of Poisson-FOCuS.
+An implementation of Poisson-FOCuS with optimizations, see Ward et al., 2023.
 """
 
 from math import inf, log, sqrt

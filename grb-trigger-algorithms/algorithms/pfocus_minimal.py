@@ -1,5 +1,5 @@
 """
-A minimal implementation of Poisson-FOCuS with no optimization.
+A minimal functional implementation of Poisson-FOCuS with no optimization.
 """
 
 from math import log
