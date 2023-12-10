@@ -39,18 +39,20 @@ def snr(n, b):
 
 def make_count_matrix(cs):
     ids = np.arange(len(cs))
-    out = np.array(
+    return np.array(
         [
-            [sum(cs[col - row : col + 1]) if col >= row else np.nan for col in ids]
+            [
+                sum(cs[col - row : col + 1]) if col >= row else np.nan
+                for col in ids
+            ]
             for row in ids
         ]
     )
-    return out
 
 
 def make_snr_matrix(mc, b_rate):
     ids = np.arange(len(mc))
-    out = np.array(
+    return np.array(
         [
             [
                 snr(mc[row, col], b_rate * (row + 1)) if col >= row else np.nan
@@ -59,12 +61,11 @@ def make_snr_matrix(mc, b_rate):
             for row in ids
         ]
     )
-    return out
 
 
 def make_max_matrix(ms):
     ids = np.arange(len(ms))
-    out = np.array(
+    return np.array(
         [
             [
                 ms[row, col]
@@ -76,24 +77,22 @@ def make_max_matrix(ms):
             for row in ids
         ]
     )
-    return out
 
 
 def make_trigs_matrix(ms, thr):
     ids = np.arange(len(ms))
-    out = np.array(
+    return np.array(
         [
             [ms[row, col] if ms[row, col] >= thr else np.nan for col in ids]
             for row in ids
         ]
     )
-    return out
 
 
 def make_gbm_matrix(ids, cs, b_rate, params, offsets=False):
     mc = make_count_matrix(cs)
-    if offsets:
-        out = np.array(
+    return (
+        np.array(
             [
                 [
                     snr(mc[row, col], b_rate * (row + 1))
@@ -111,8 +110,8 @@ def make_gbm_matrix(ids, cs, b_rate, params, offsets=False):
                 for row in ids
             ]
         )
-    else:
-        out = np.array(
+        if offsets
+        else np.array(
             [
                 [
                     snr(mc[row, col], b_rate * (row + 1))
@@ -124,14 +123,14 @@ def make_gbm_matrix(ids, cs, b_rate, params, offsets=False):
                 for row in ids
             ]
         )
-    return out
+    )
 
 
 def make_focus_curve_matrix(f_mem, ms):
     ids = np.arange(len(ms))
     tiles = [item for sublist in f_mem for item in sublist]
     max_col = max(list(zip(*tiles))[1])
-    out = np.array(
+    return np.array(
         [
             [
                 ms[row, col]
@@ -142,32 +141,32 @@ def make_focus_curve_matrix(f_mem, ms):
             for row in ids
         ]
     )
-    return out
 
 
 def make_focus_max_matrix(f_mem, ms):
     ids = np.arange(len(ms))
     tiles = [item for sublist in f_mem for item in sublist]
     max_col = max(list(zip(*tiles))[1])
-    out = np.array(
+    return np.array(
         [
             [ms[row, col] if ((row, col) in tiles) else np.nan for col in ids]
             for row in ids
         ]
     )
-    return out
 
 
 def intersect(m1, m2):
     assert m1.shape == m2.shape
     ids = np.arange(len(m1))
-    out = np.array(
+    return np.array(
         [
-            [m1[row, col] if not np.isnan(m2[row, col]) else np.nan for col in ids]
+            [
+                m1[row, col] if not np.isnan(m2[row, col]) else np.nan
+                for col in ids
+            ]
             for row in ids
         ]
     )
-    return out
 
 
 def plot(
@@ -223,10 +222,7 @@ def plot(
         vertical_offset = +0.05
         for (i, j), z in np.ndenumerate(maxima_matrix):
             if not np.isnan(z) and z >= 0:
-                if z > 3:
-                    text_color = "black"
-                else:
-                    text_color = "white"
+                text_color = "black" if z > 3 else "white"
                 ax0.text(
                     j + 0.5,
                     i + 0.5 + vertical_offset,

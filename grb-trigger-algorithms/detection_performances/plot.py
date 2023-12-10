@@ -11,8 +11,7 @@ def fit_erf(intensities, efficiency):
     mod = StepModel(form="erf")
     pars = mod.guess(y, x=x)
     pars["amplitude"].set(value=1, vary=False)
-    out = mod.fit(y, pars, x=x)
-    return out
+    return mod.fit(y, pars, x=x)
 
 
 def make_plot(results_filepath):

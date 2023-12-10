@@ -40,11 +40,10 @@ def run_triggers(control, test, triglist, labels, fluences, binning):
             if significance > 0:
                 result = (significance, changepoint * binning, triggertime * binning)
                 true_positives[label][i] = result
-    output = {
+    return {
         "true det": true_positives,
         "false det": false_positives,
     }
-    return output
 
 
 def parallelize(

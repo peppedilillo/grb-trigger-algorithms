@@ -17,7 +17,7 @@ def stringified(value, decimals):
 
 def write_to_file(sample, lambda_, filepath):
     with open(filepath, mode="w") as f:
-        f.write("#" + stringified(lambda_, decimals=2))
+        f.write(f"#{stringified(lambda_, decimals=2)}")
         for value in sample:
             f.write(str(value) + "\n")
 
@@ -26,10 +26,9 @@ def generate_data(n, lambda_, anomaly_dur, anomaly_intensity):
     background = rng.poisson(lam=lambda_, size=n)
     if anomaly_dur:
         anomaly = rng.poisson(lam=anomaly_intensity * lambda_, size=anomaly_dur)
-        sample = np.concatenate((background, anomaly))
+        return np.concatenate((background, anomaly))
     else:
-        sample = background
-    return sample
+        return background
 
 
 def run(
@@ -41,22 +40,14 @@ def run(
 ):
     if anomaly is not None:
         anomaly_dur, anomaly_intensity = anomaly
-        filepath = folderpath + "pois_l{}_n{}_ad{}_ai{}".format(
-            str(lambda_),
-            n,
-            anomaly_dur,
-            str(anomaly_intensity),
-        )
+        filepath = f"{folderpath}pois_l{str(lambda_)}_n{n}_ad{anomaly_dur}_ai{str(anomaly_intensity)}"
     else:
         anomaly_dur = 0
         anomaly_intensity = 1
-        filepath = folderpath + "pois_l{}_n{}".format(
-            str(lambda_),
-            n,
-        )
+        filepath = f"{folderpath}pois_l{str(lambda_)}_n{n}"
     if iteration_id is not None:
         filepath = filepath + "_{:04x}".format(iteration_id)
-    filepath = filepath + ".txt"
+    filepath = f"{filepath}.txt"
 
     sample = generate_data(n, lambda_, anomaly_dur, anomaly_intensity)
     write_to_file(sample, lambda_, filepath)

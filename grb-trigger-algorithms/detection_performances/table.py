@@ -10,8 +10,7 @@ def fit_erf(intensities, efficiency):
     mod = StepModel(form="erf")
     pars = mod.guess(y, x=x)
     pars["amplitude"].set(value=1, vary=False)
-    out = mod.fit(y, pars, x=x)
-    return out
+    return mod.fit(y, pars, x=x)
 
 
 def make_table(results_filepath):
@@ -55,11 +54,10 @@ def make_table(results_filepath):
         "N/A": undetected,
     }
     for i in range(len(labels)):
-        dic.setdefault("F" + str(i), [relative_eff[(labels[i], l_)] for l_ in labels])
+        dic.setdefault(f"F{str(i)}", [relative_eff[(labels[i], l_)] for l_ in labels])
 
     dataframe = pd.DataFrame(data=dic, index=labels)
-    latex_string = dataframe.style.format(precision=1).to_latex(hrules=True)
-    return latex_string
+    return dataframe.style.format(precision=1).to_latex(hrules=True)
 
 
 if __name__ == "__main__":

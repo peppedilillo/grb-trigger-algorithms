@@ -30,9 +30,7 @@ class Curve:
     def dominate(self, q, acc):
         """if dominates q, returns +1"""
         area = (acc.a - self.a) * (acc.b - q.b) - (acc.a - q.a) * (acc.b - self.b)
-        if area > 0:
-            return +1
-        return -1
+        return +1 if area > 0 else -1
 
 
 class Focus:
@@ -44,8 +42,7 @@ class Focus:
         self.corrected_threshold = threshold**2 / 2
         self.global_max = 0.0
         self.time_offset = 0
-        self.curve_list = []
-        self.curve_list.append(Curve(inf, 0.0, 0, 0.0))
+        self.curve_list = [Curve(inf, 0.0, 0, 0.0)]
         self.curve_list.append(Curve(0, 0.0, 0, 0.0))
 
     def __call__(self, xs, bs):

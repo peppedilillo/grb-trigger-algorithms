@@ -60,15 +60,12 @@ class FOCuSDES:
 
     def des_initialize(self):
         if self.s_0 is None:
-            counts_sum = sum([self.buffer[i] for i in range(self.sleep - self.m)])
+            counts_sum = sum(self.buffer[i] for i in range(self.sleep - self.m))
             delta_t = self.sleep - self.m
             self.s_t = counts_sum / delta_t
         else:
             self.s_t = self.s_0
-        if self.b_0 is None:
-            self.b_t = 0.0
-        else:
-            self.b_t = self.b_0
+        self.b_t = 0.0 if self.b_0 is None else self.b_0
         return
 
     def des_update(self, x):
@@ -107,11 +104,9 @@ class FOCuSDES:
         if self.t <= self.sleep:
             if self.t != self.sleep:
                 return 0.0, 0
-            # initialize des
-            if self.t == self.sleep:
-                self.des_initialize()
-                for i in range(self.sleep - self.m):
-                    self.buffer.popleft()
+            self.des_initialize()
+            for _ in range(self.sleep - self.m):
+                self.buffer.popleft()
 
         x_t_m = self.buffer.popleft()
         self.des_update(x_t_m)

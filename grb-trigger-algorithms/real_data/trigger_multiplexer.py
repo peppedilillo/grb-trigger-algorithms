@@ -15,8 +15,7 @@ def get_keys(ns=KDETS, rs=KRANGES):
     :param rs: sequence representing ranges
     :return: list of strings
     """
-    out = ["n" + str(i) + "_r" + j for i in ns for j in rs]
-    return out
+    return [f"n{str(i)}_r{j}" for i in ns for j in rs]
 
 
 def filter_keys(ls, ns, rs=None):
@@ -28,8 +27,8 @@ def filter_keys(ls, ns, rs=None):
     """
     if rs is None:
         rs = ["0", "1", "2"]
-    index_labels = set([i[1] for i in ls])
-    range_labels = set([i[-1] for i in ls])
+    index_labels = {i[1] for i in ls}
+    range_labels = {i[-1] for i in ls}
 
     out_index = index_labels.intersection(ns)
     out_range = range_labels.intersection(rs)

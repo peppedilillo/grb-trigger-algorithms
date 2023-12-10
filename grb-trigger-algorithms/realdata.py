@@ -3,6 +3,7 @@ A script to execute Poisson-FOCuS with exponential smoothing background estimate
 over data one week of data from Fermi-GBM.
 """
 
+
 import logging
 import time
 
@@ -32,13 +33,12 @@ if __name__ == "__main__":
         level=logging.DEBUG,
     )
     print(
-        "Hello!\nA log file with timestamp '{}' has been created.\n"
-        "You can check it while I'm working.".format(timestamp)
+        f"Hello!\nA log file with timestamp '{timestamp}' has been created.\nYou can check it while I'm working."
     )
-    logging.info("Running on datafile: {}.".format(datafile))
-    logging.info("Trigger algorithm: {}.".format(trigger.__name__))
-    logging.info("Trigger parameters: {}".format(parameters))
+    logging.info(f"Running on datafile: {datafile}.")
+    logging.info(f"Trigger algorithm: {trigger.__name__}.")
+    logging.info(f"Trigger parameters: {parameters}")
 
     obs_df = pd.read_csv(datafile, compression="zip")
     res = trigger_mux(obs_df, trigger, threshold_array, stride=18750, **parameters)
-    print("I've found {} triggers. I'm done, ciao!.".format(len(res)))
+    print(f"I've found {len(res)} triggers. I'm done, ciao!.")

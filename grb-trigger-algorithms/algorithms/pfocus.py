@@ -25,9 +25,7 @@ def dominate(p, q, acc):
     returns if p dominates q
     """
     area = (acc.x - p.x) * (acc.b - q.b) - (acc.x - q.x) * (acc.b - p.b)
-    if area > 0:
-        return +1
-    return -1
+    return +1 if area > 0 else -1
 
 
 class Focus:
@@ -50,8 +48,7 @@ class Focus:
         self.threshold_llr = threshold_std**2 / 2
         self.global_max = None
         self.time_offset = None
-        self.curve_list = []
-        self.curve_list.append(Curve(inf, 0.0, 0, 0.0))
+        self.curve_list = [Curve(inf, 0.0, 0, 0.0)]
         self.curve_list.append(Curve(0, 0.0, 0, 0.0))
 
     def __call__(
@@ -127,7 +124,7 @@ if __name__ == "__main__":
     )
     anomaly_duration = int(stats.uniform().rvs() * 10 * 64) + 1
     anomaly_start = int(stats.uniform().rvs() * (num_samples - anomaly_duration))
-    print("simulated anomaly starts at {}".format(anomaly_start))
+    print(f"simulated anomaly starts at {anomaly_start}")
     background_counts = stats.poisson(mu=true_background).rvs(size=num_samples)
     anomaly_counts = (
         1.0

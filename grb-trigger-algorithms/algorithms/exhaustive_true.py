@@ -12,9 +12,7 @@ def sign(n, b, threshold):
     if n > b + threshold * sqrt(b):
         # compute poisson partition function
         pvalue = sps.pdtrc(n, b)
-        # converts to standard deviations
-        stdevs = -sps.ndtri(pvalue)
-        return stdevs
+        return -sps.ndtri(pvalue)
     return 0.0
 
 

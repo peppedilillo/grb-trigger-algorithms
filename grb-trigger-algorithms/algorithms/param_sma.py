@@ -9,9 +9,7 @@ from math import log, sqrt
 
 
 def sign(n, b):
-    if n > b:
-        return n * log(n / b) - (n - b)
-    return 0.0
+    return n * log(n / b) - (n - b) if n > b else 0.0
 
 
 def sumdq(d, n, h):
@@ -100,14 +98,13 @@ def init_gbm(threshold: float):
     Returns:
         a trigger function.
     """
-    f = init(
+    return init(
         threshold,
         bg_len=1062,
         fg_len=250,
         hs=[1, 2, 2, 4, 4, 8, 8, 16, 16, 32, 32, 64, 64, 128, 128, 256, 256],
         gs=[0, 0, 1, 0, 2, 0, 4, 0, 8, 0, 16, 0, 32, 0, 64, 0, 128],
     )
-    return f
 
 
 def init_batse(threshold: float):
@@ -120,11 +117,10 @@ def init_batse(threshold: float):
     Returns:
         a trigger function.
     """
-    f = init(
+    return init(
         threshold,
         bg_len=1062,
         fg_len=250,
         hs=[4, 16, 64],
         gs=[0, 0, 0],
     )
-    return f

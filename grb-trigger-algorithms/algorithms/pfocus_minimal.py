@@ -18,7 +18,7 @@ def dominates(c, k):
 
 
 def focus_maximize(cs):
-    return max([(c[0] and curve_max(c) or 0, c[2]) for c in cs])
+    return max((c[0] and curve_max(c) or 0, c[2]) for c in cs)
 
 
 def focus_update(cs, x, b, c):
