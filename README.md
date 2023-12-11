@@ -157,11 +157,24 @@ If you installed our conda environment you can uninstall it with:
 
 `conda remove -n grb-trigger-algorithms --all`
 
-## Bibliography
+## Bibliography and credits
+The FOCuS algorithm was first devised by Gaetano Romano, Idris Eckley, Paul Fearnhead and Guillem Rigaill. The initial design was unconcerned with data from space detectors or, to my knowledge, count data in general. 
+This is the bibliographic entry for Gaetano's paper, make sure to check it out!
 
-The paper this repo buils on has yet to be published. 
-I will update with a link as soon as we have it or a preprint out.
+* _Romano, Gaetano, et al. "Fast online changepoint detection via functional pruning CUSUM statistics." Journal of Machine Learning Research 24 (2023): 1-36._ 
 
-* Dilillo, G., et al. "Gamma-ray burst detection using Poisson-FOCuS and other trigger algorithms." _manuscript submitted for publication_ (2023).
+Kes Ward succeeded in generalizing the FOCuS's algorithm to count data and developed the first python implementation of Poisson-FOCuS. He also devised a technique to fasten the algorithm, making it effectively linear when running with high thresholds. 
+This is a reference to Kester's paper on Poisson-FOCuS, to which myself, Idris Eckley and Paul Fearnhead contributed:
 
-* Ward, Kes, et al. "Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection." _Journal of the American Statistical Association_ (2023): 1-13.
+* _Ward, Kes, et al. "Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection." _Journal of the American Statistical Association_ (2023): 1-13._
+
+I worked on writing the best implementation of the algorithm I could achieve, targeting applications on-board the satellites of the [HERMES-Pathfinder](https://www.hermes-sp.eu) constellation. 
+This implementation ran over a large dataset of both real and simulated GRB data, and its performances were compared against other established techniques.
+A paper has yet to be published but I will update as soon as we have something out.
+
+* _Dilillo, G., et al. "Gamma-ray burst detection using Poisson-FOCuS and other trigger algorithms." _manuscript submitted for publication_ (2023)._
+
+Kester, Paul, Idris and Fabrizio Fiore, among others, all contributed to it.
+
+Thank you all!! 
+It's been a great adventure.
