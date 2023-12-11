@@ -170,11 +170,10 @@ This is a reference to Kester's paper on Poisson-FOCuS, to which myself, Idris E
 
 I worked on writing the best implementation of the algorithm I could achieve, targeting applications on-board the satellites of the [HERMES-Pathfinder](https://www.hermes-sp.eu) constellation. 
 This implementation ran over a large dataset of both real and simulated GRB data, and its performances were compared against other established techniques.
-A paper has yet to be published but I will update as soon as we have something out.
 
 * _Dilillo, G., et al. "Gamma-ray burst detection using Poisson-FOCuS and other trigger algorithms." _manuscript submitted for publication_ (2023)._
 
-Kester, Paul, Idris and Fabrizio Fiore, among others, all contributed to it.
+The paper has yet to be published but I will update as soon as we have something out. Kester, Paul, Idris and Fabrizio Fiore, among others, all contributed to it.
 
-Thank you all!! 
+Thank you all!
 It's been a great adventure.
