@@ -164,6 +164,7 @@ I acknowledge and thank Kes Ward, Paul Fearnhead, Idris Eckley and Gaetano Roman
 * _Ward, K., Dilillo, G., Eckley, I., & Fearnhead, P. (2023). Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection. Journal of the American Statistical Association, 1-13._
 * _Ward, K., Romano, G., Eckley, I., & Fearnhead, P. (2023). A Constant-per-Iteration Likelihood Ratio Test for Online Changepoint Detection for Exponential Family Models. arXiv preprint arXiv:2302.04743._  
 
-The present work built over these results.
-A paper has yet to be published. I will update as soon as we have something out. 
+This work built over these results.
+The paper has been accepted for pubblication in ApJ and is currently in production.
 Kester, Paul, Idris and Fabrizio Fiore, among others, all contributed to it.
+The [preprint](https://arxiv.org/abs/2312.08817) is online on arXiv.
