@@ -25,13 +25,13 @@ def dominates(c: Curve, k: Curve):
     return c.x / c.b > k.x / k.b
 
 
-def focus_maximize(cs: list[Curve]) -> tuple[float, int]:
+def focus_maximize(cs: list[Curve]):
     return max([(c.x and curve_max(c) or 0, c.t) for c in cs])
 
 
-def focus_update(cs: list[Curve], x_t: int, lambda_t: float, c: Curve):
-    if cs and dominates(k := curve_update(cs[0], x_t, lambda_t), c):
-        return [k] + focus_update(cs[1:], x_t, lambda_t, k)
+def focus_update(cs: list[Curve], x_t: int, b_t: float, c: Curve):
+    if cs and dominates(k := curve_update(cs[0], x_t, b_t), c):
+        return [k] + focus_update(cs[1:], x_t, b_t, k)
     return [Curve(0, 0.0, 0)]
 
 
