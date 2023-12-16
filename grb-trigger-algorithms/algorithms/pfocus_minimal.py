@@ -2,38 +2,42 @@
 A minimal functional implementation of Poisson-FOCuS with no optimization.
 """
 
-from math import log
+from math import log, sqrt
+from typing import NamedTuple
 
 
-def curve_update(c, x_t, b_t):
-    return c[0] + x_t, c[1] + b_t, c[2] + 1
+class Curve(NamedTuple):
+    x: int
+    b: float
+    t: int
 
 
-def curve_max(c):
-    return c[0] * log(c[0] / c[1]) - (c[0] - c[1])
+def curve_update(c: Curve, x: int, b: float):
+    return Curve(c.x + x, c.b + b, c.t + 1)
 
 
-def dominates(c, k):
-    return c[0] / c[1] > k[0] / k[1]
+def curve_max(c: Curve):
+    return c.x * log(c.x / c.b) - (c.x - c.b)
 
 
-def focus_maximize(cs):
-    return max([(c[0] and curve_max(c) or 0, c[2]) for c in cs])
+def dominates(c: Curve, k: Curve):
+    """Returns if curve 'c' dominates 'k'."""
+    return c.x / c.b > k.x / k.b
 
 
-def focus_update(cs, x, b, c):
-    if cs and dominates(k := curve_update(cs[0], x, b), c):
-        return [k] + focus_update(cs[1:], x, b, k)
-    return [(0, 0.0, 0)]
+def focus_maximize(cs: list[Curve]) -> tuple[float, int]:
+    return max([(c.x and curve_max(c) or 0, c.t) for c in cs])
+
+
+def focus_update(cs: list[Curve], x_t: int, lambda_t: float, c: Curve):
+    if cs and dominates(k := curve_update(cs[0], x_t, lambda_t), c):
+        return [k] + focus_update(cs[1:], x_t, lambda_t, k)
+    return [Curve(0, 0.0, 0)]
 
 
 def focus(xs: list[int], bs: list[float], threshold: float):
     """
-    This is the simplest implementation of Poisson-FOCuS.
-    Note that it does not convert loglikelihood ratio significance to std. devs.
-    Implies that if you want to run at 5 [sigma] threshold you should call with
-    threshold 12.5 [llr] and expect trigger significance > 12.5 [llr].
-     S_llr = S_sigma ** 2 / 2, due Wilk's Theorem.
+    runs Poisson-FOCuS and returns a changepoint.
 
     Args:
         xs: a list of count data
@@ -41,19 +45,19 @@ def focus(xs: list[int], bs: list[float], threshold: float):
         threshold: in loglikelihood ratio units (not std. devs.)
 
     Returns:
-        A 3-tuple: significance value (loglikelihood ratio), changepoint,  and
+        A 3-tuple: significance value (standard deviations), changepoint,  and
         stopping iteration (trigger time).
 
     Raises:
         ValueError: if zero background is passed to the update function.
     """
-    cs = [(0, 0.0, 0)]
-
+    threshold_llr = threshold * threshold / 2
+    cs = [Curve(0, 0.0, 0)]
     for t, (x_t, b_t) in enumerate(zip(xs, bs)):
         if b_t <= 0:
             raise ValueError("background rate must be greater than zero.")
-        cs = focus_update(cs, x_t, b_t, (1, 1.0, 0))
+        cs = focus_update(cs, x_t, b_t, Curve(1, 1.0, 0))
         global_max, time_offset = focus_maximize(cs)
-        if global_max > threshold:
-            return global_max, t - time_offset + 1, t
+        if global_max > threshold_llr:
+            return sqrt(2 * global_max), t - time_offset + 1, t
     return 0.0, len(xs) + 1, len(xs)
