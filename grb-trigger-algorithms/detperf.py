@@ -1,5 +1,5 @@
 """
-This scipts runs the computational efficiency tests.
+This scipt runs the computational efficiency tests.
 The use of the exhaustive search algorithm is disabled by default.
 You can enable it uncommenting line 179.
 The script is parallelized with joblib. By default it uses 8 threads.
