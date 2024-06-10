@@ -13,7 +13,7 @@ Yuri Evangelista,
 Andrea Vacchi,
 Fabrizio Fiore_
 
-The paper deals with algorithms for detecting gamma-ray bursts and has been published for The Astrophysical Journal. You can find the full text [at this link](https://doi.org/10.3847/1538-4357/ad15ff).
+The paper deals with algorithms for detecting gamma-ray bursts and has been published for The Astrophysical Journal. You can find the full text at [this link](https://doi.org/10.3847/1538-4357/ad15ff).
 
 
 ## Data
