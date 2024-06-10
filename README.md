@@ -13,7 +13,7 @@ Yuri Evangelista,
 Andrea Vacchi,
 Fabrizio Fiore_
 
-The paper deals with algorithms for detecting gamma-ray bursts, see the [preprint](https://arxiv.org/abs/2312.08817).
+The paper deals with algorithms for detecting gamma-ray bursts and has been published for The Astrophysical Journal. You can find the full text [at this link](https://doi.org/10.3847/1538-4357/ad15ff).
 
 
 ## Data
@@ -158,13 +158,9 @@ If you installed our conda environment you can uninstall it with:
 `conda remove -n grb-trigger-algorithms --all`
 
 ## Bibliography and acknowledgment
-I acknowledge and thank Kes Ward, Paul Fearnhead, Idris Eckley and Gaetano Romano for their work on Poisson-FOCuS and FOCuS, see:
+
+If you want to know more on FOCuS and Poisson-FOCuS, make sure to check these references:
 
 * _Romano, G., Eckley, I. A., Fearnhead, P., & Rigaill, G. (2023). Fast online changepoint detection via functional pruning CUSUM statistics. Journal of Machine Learning Research, 24, 1-36._ 
 * _Ward, K., Dilillo, G., Eckley, I., & Fearnhead, P. (2023). Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection. Journal of the American Statistical Association, 1-13._
 * _Ward, K., Romano, G., Eckley, I., & Fearnhead, P. (2023). A Constant-per-Iteration Likelihood Ratio Test for Online Changepoint Detection for Exponential Family Models. arXiv preprint arXiv:2302.04743._  
-
-This work built over these results.
-The paper has been accepted for pubblication in ApJ and is currently in production.
-Kester, Paul, Idris and Fabrizio Fiore, among others, all contributed to it.
-The [preprint](https://arxiv.org/abs/2312.08817) is online on arXiv.
