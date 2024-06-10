@@ -157,9 +157,9 @@ If you installed our conda environment you can uninstall it with:
 
 `conda remove -n grb-trigger-algorithms --all`
 
-## Bibliography and acknowledgment
+## Bibliography
 
-If you want to know more on FOCuS and Poisson-FOCuS, make sure to check these references:
+If you want to know more on FOCuS and Poisson-FOCuS, make sure to check these:
 
 * _Romano, G., Eckley, I. A., Fearnhead, P., & Rigaill, G. (2023). Fast online changepoint detection via functional pruning CUSUM statistics. Journal of Machine Learning Research, 24, 1-36._ 
 * _Ward, K., Dilillo, G., Eckley, I., & Fearnhead, P. (2023). Poisson-FOCuS: An efficient online method for detecting count bursts with application to gamma ray burst detection. Journal of the American Statistical Association, 1-13._
