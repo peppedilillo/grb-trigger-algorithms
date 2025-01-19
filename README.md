@@ -107,9 +107,9 @@ You are set!
 ### 1. Computational efficiency
 
 We provide a shells script `compeff.sh` to automatically run the computational efficiency tests.
-To run this script on mac move to the `grb-trigger-algorithms/grb-trigger-algorithms` folder and run:
+To launch this script move to the `grb-trigger-algorithms/grb-trigger-algorithms` folder then, from your favourite shell, run:
 
-`zsh compeff.sh`
+`sh compeff.sh`
 
 This requires you to have set up the data (see section 1. and 3. of "Setup") and compiled the C implementations of Poisson-FOCuS and the GBM-like benchmark.
 The results of these tests are stored in the folder `grb-trigger-algorithms/computational_efficiency/outputs`.
